@@ -46,23 +46,38 @@ function inserir() {
         checkbox.type = 'checkbox'; // Defina o tipo como 'checkbox'
         var valor_item= document.createElement('input');
         valor_item.type='number';
+        valor_item.placeholder = 'R$';
+        var unidades=document.createElement('span');
+
+        // Adicione o elemento <span> ao elemento <li> com a classe 'item'
+       
 
         item.className = 'item'; // Adicione a classe 'item' ao elemento de lista
         checkbox.className='li_checkbox'
         valor_item.className = 'valor_item';
-        item.appendChild(checkbox); // Anexe a caixa de seleção ao item da lista
-        item.appendChild(document.createTextNode(texto1 + ' ' + texto2 + ' ' + texto3)); // Adicione os textos associados ao item da lista
+        unidades.className='unidades';
+        
+        unidades.appendChild(document.createTextNode(texto1));
+        item.appendChild(checkbox);                
+        item.appendChild(unidades); // Adicione os textos associados ao item da lista
+        item.appendChild(document.createTextNode(' ' + texto2 + ' ' + texto3)); // Adicione os textos associados ao item da lista
         item.appendChild(valor_item);
 
+        checkbox.addEventListener('click', function() {
+            calcularTotal();
+        });
+        
         var lista_tarefas = document.getElementById('f_lista'); // Obtenha o pai onde deseja adicionar a item
         lista_tarefas.appendChild(item); // Adicione o item da lista (com a caixa de seleção e texto) à lista
 
         document.getElementById('item_usuario3').value = ""; // Esvazie o campo de texto3
         document.getElementById('item_usuario2').value = ""; // Esvazie o campo de texto2
         document.getElementById('item_usuario1').value = ""; // Esvazie o campo de texto1
+
     } else {
         window.alert('Inserir dados do item!');
     }
+
 }
 
 /*OBJETIVO: Quando clicar Enter, inserir item */
@@ -126,33 +141,39 @@ var checkboxes = document.querySelectorAll('.li_checkbox');
 
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('click', function() {
-        // Chame uma função para calcular o total quando um checkbox é clicado
+        // Chame a função para calcular o total sempre que um checkbox for clicado
         calcularTotal();
     });
 });
 
-// Função para calcular o total
 function calcularTotal() {
     var total = 0;
-    
-    // Percorra todos os itens da lista
-    var itens = document.querySelectorAll('.item');
-    itens.forEach(function(item) {
-        var checkbox = item.querySelector('.li_checkbox');
-        var valorItem = item.querySelector('.valor_item');
-        
-        // Verifique se o checkbox está marcado
-        if (checkbox.checked) {
-            // Converta o valor do item para número e some ao total
-            var valor = parseFloat(valorItem.value);
-            if (!isNaN(valor)) {
-                total += valor;
+
+    // Percorra todos os checkboxes
+    var checkboxes = document.querySelectorAll('.li_checkbox');
+    checkboxes.forEach(function(checkbox) {
+        // Encontre o item pai do checkbox
+        var item = checkbox.closest('.item');
+
+        // Obtenha o valor do item e as unidades do item atual
+        var valorItem = parseFloat(item.querySelector('.valor_item').value);
+        var unidadesText = item.querySelector('.unidades').textContent;
+        var qnt = parseFloat(unidadesText);
+
+        // Verifique se os valores são válidos
+        if (!isNaN(valorItem) && !isNaN(qnt)) {
+            // Se o checkbox estiver marcado, adicione o valor do item ao total
+            if (checkbox.checked) {
+                total += valorItem * qnt;
             }
         }
     });
-    
+
     // Atualize o texto da <p> com o total formatado
     var totalCompras = document.getElementById('total_compras');
     totalCompras.textContent = 'TOTAL: R$ ' + total.toFixed(2);
 }
+
+// Chame a função de cálculo inicial para considerar o item que já estava presente
+calcularTotal();
 
