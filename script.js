@@ -71,7 +71,7 @@ function inserir() {
         lista_tarefas.appendChild(item); // Adicione o item da lista (com a caixa de seleção e texto) à lista
 
         document.getElementById('item_usuario3').value = ""; // Esvazie o campo de texto3
-        document.getElementById('item_usuario2').value = ""; // Esvazie o campo de texto2
+        document.getElementById('item_usuario2').value = "unidade(s)"; // Esvazie o campo de texto2
         document.getElementById('item_usuario1').value = ""; // Esvazie o campo de texto1
 
     } else {
