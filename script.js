@@ -66,7 +66,7 @@ function inserir() {
         checkbox.addEventListener('click', function() {
             calcularTotal();
         });
-        
+
         var lista_tarefas = document.getElementById('f_lista'); // Obtenha o pai onde deseja adicionar a item
         lista_tarefas.appendChild(item); // Adicione o item da lista (com a caixa de seleção e texto) à lista
 
@@ -116,24 +116,16 @@ function click2(){
     b.style.background = 'black';
 }
 function excluir() {
-    
-    b.value = 'SELECIONE';
+    b.value = 'EXCLUÍDO';
 
-    var selecionado;
-    var listaItens;
+    var listaItens = document.querySelectorAll('.li_checkbox:checked');
 
-    listaItens=document.getElementsByTagName('li');
+    listaItens.forEach(function(item) {
+        item.closest('.item').remove();
+    });
 
-    for(var selecionado =0 ; selecionado <listaItens.length;selecionado++){
-        listaItens[selecionado].addEventListener('click',excluir_selecionado);            
-    }
-
-    
-    function excluir_selecionado(){
-    
-
-    this.parentNode.removeChild(this);
-    }
+    // Após a exclusão, recalcule o total
+    calcularTotal();
 }
 
 // Adicione um evento de clique a todos os checkboxes
