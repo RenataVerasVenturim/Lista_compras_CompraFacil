@@ -31,6 +31,8 @@ main{
     border:1px solid #bfb8b8;
     padding:35px 5px;
     text-align: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000;
 }
 
 main span{
@@ -40,14 +42,14 @@ main span{
 
 #item_usuario1 {
     width: 50px; 
-    height: 25px;
+    height: 35px;
 }
 #item_usuario2 {
-    height: 25px;
+    height: 35px;
 }
 #item_usuario3 {
     width: 120px; 
-    height: 25px;
+    height: 35px;
 }
 
 #f_form li{
@@ -60,12 +62,13 @@ ol{
 }
 .valor_item{
     width: 48px;
+    height: 35px;
 }
 
 .f_botao{    
     background-color: black;
     color:white;
-    padding:6px 28px ;
+    padding:6px 26px ;
     margin-top: 10px ;
     margin-bottom: 10px;
     cursor:pointer;
@@ -73,7 +76,7 @@ ol{
 
 .f_botao:hover{
     
-    padding:8px 30px;
+    padding:8px 28px;
 }
 
 footer {
