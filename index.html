@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="App de lista de compras">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>CompraFácil</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="logo do CompraFácil" height="100px" width="100px">
+        </nav>
+    </header>
+    <main>
+        <picture>
+            <source media="(max-width:750px)" srcset="imgm.jpg" type="image/jpg">
+            <source media="(max-width:1050px)" srcset="imgm.jpg" type="image/jpg">
+            <img src="imgm.jpg" alt="ícone do app">
+        </picture>
+        <h1>
+            CompraFácil
+        </h1>
+        <div id="f_form">
+            <span>
+                <label for="qnt">
+                    QNT
+                </label>
+                <br><input type="number" id="item_usuario1" placeholder="1,.." required>
+            </span>
+            <span>
+                <label for="medida">
+                Unid <br> 
+                medida<br>
+                </label>
+                <select id="item_usuario2">
+                    <option value="Kg">Kg</option>
+                    <option value="g">g</option>
+                    <option value="unidade(s)">unidade(s)</option>
+                    <option value="bandeja(s)">bandeja(s)</option>
+                    <option value="caixa(s)">caixa(s)</option>
+                    <option value="pacote(s)">pacote(s)</option>
+                </select>
+            </span>
+            <span>
+                <label for="item">
+                ITEM
+                <br>
+                </label>
+                <input type="text" id="item_usuario3" name="item_usuario" placeholder="Arroz, feijão..."> 
+            </span>
+            <br>
+            <span>
+                <input type="button" class="f_botao" value="INSERIR">
+                <input type="button" class="f_botao" value="EXCLUIR">
+            </span>
+            <ol id="f_lista" class="f_lista">
+               <li class="item"><input type="checkbox" class="li_checkbox">1 Kg arroz <input type="number" class="valor_item" placeholder="R$"></li>
+             </ol>
+
+            <p id="total_compras">
+               <b>TOTAL: R$</b> 
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Renata Veras Venturim. Todos os direitos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

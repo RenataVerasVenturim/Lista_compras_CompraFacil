@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+/* Estilos do header e da navegação */
+header nav{
+    background-color: #f2f2f2;
+    padding: 3px;
+    display:flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000;   
+    position: relative;
+    font-size: 16px;
+}
+
+nav img{
+width: 70px;
+height: 70px;
+margin-right:10px;
+}
+
+main{
+    background-color:#fff;
+    border:1px solid #bfb8b8;
+    padding:35px 5px;
+    text-align: center;
+}
+
+main span{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#item_usuario1 {
+    width: 20px; 
+}
+#item_usuario3 {
+    width: 86px; 
+}
+
+#f_form li{
+    align-items: center;
+    text-align: center;
+}
+
+ol{
+    list-style-type: none;
+}
+.valor_item{
+    width: 48px;
+}
+
+.f_botao{    
+    background-color: black;
+    color:white;
+    padding:10px 50px ;
+    margin-top: 10px ;
+    margin-bottom: 10px;
+    cursor:pointer;
+}
+
+.f_botao:hover{
+    
+    padding:12px 52px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);   
+
+}
