@@ -64,6 +64,18 @@ function inserir() {
         item.appendChild(valor_item);
 
         checkbox.addEventListener('click', function() {
+            var liItem = this.parentElement; 
+            if (this.checked) {
+                liItem.style.textDecoration = 'line-through'; 
+                // Mova o item para o final da lista (mantendo a ordem dos outros itens)
+                lista_tarefas.removeChild(liItem);
+                lista_tarefas.appendChild(liItem);
+            } else {
+                liItem.style.textDecoration = 'none';
+                // Mova o item de volta para a posição original na lista
+                lista_tarefas.removeChild(liItem);
+                lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
+            }
             calcularTotal();
         });
 
