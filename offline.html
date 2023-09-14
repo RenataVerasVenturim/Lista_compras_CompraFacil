@@ -17,9 +17,49 @@
                 <source media="(max-width:1050px)" srcset="imgp.png" type="image/png">
                 <img src="imgm.png" alt="ícone do app">
             </picture>
+            <button id="btn-menu">
+                <svg width="24" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.96317 2.13703H30.6939C31.4122 2.13703 31.9999 1.7868 31.9999 1.06853C31.9999 0.350261 31.4122 3.05176e-05 30.6939 3.05176e-05H1.96317C1.2449 3.05176e-05 0.657227 0.350261 0.657227 1.06853C0.657227 1.7868 1.2449 2.13703 1.96317 2.13703ZM30.6939 21.37H1.96317C1.2449 21.37 0.657227 21.4828 0.657227 22.2011C0.657227 22.9193 1.2449 23.507 1.96317 23.507H30.6939C31.4122 23.507 31.9999 23.1568 31.9999 22.4385C31.9999 21.7072 31.4122 21.37 30.6939 21.37ZM30.6939 10.685H1.96317C1.2449 10.685 0.657227 11.0353 0.657227 11.7535C0.657227 12.4718 1.2449 12.822 1.96317 12.822H30.6939C31.4122 12.822 31.9999 12.4718 31.9999 11.7535C31.9999 11.0222 31.4122 10.685 30.6939 10.685Z" fill="#1C1C1C" aria-label="Menu"></path>
+                </svg>
+                </button>
+    
+                <ul id="lista_suspensa">
+                    <li><a href="#" class="list" id="link-calculadora">CALCULADORA</a></li>
+                    <li><a href="#" class="list" id="sobre_app">SOBRE O APP</a><!--
+                    <li><a href="#contact" class="list">CONTATOS</a>-->
+                </ul>
         </nav>
     </header>
     <main>
+        <div id="calculadora-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="fechar-calculadora">&times;</span>
+                <h2>Calculadora de comparação</h2>
+                <input type="text" id="valor1" placeholder="Valor 1">
+                <input type="text" id="quantidade1" placeholder="Quantidade 1"><br>
+                <input type="text" id="valor2" placeholder="Valor 2">
+                <input type="text" id="quantidade2" placeholder="Quantidade 2">
+                <button id="calcular">Calcular</button>
+                <p id="resultado"></p>
+            </div>
+        </div>
+        <div id="sobre_app" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="fechar-calculadora">&times;</span>
+                <h2>Sobre o app</h2>
+                <p>
+                    Criado por Renata Veras Venturim
+                </p>
+                <p>
+                    Versão:1.0.0
+                </p>
+                <p>
+                    Sugestões enviar para:
+                    renata_venturim@hotmail.com
+                </p>
+            </div>
+        </div>
+    
         <div id="msg_inicial" style="padding-right: 100.000;padding-left: 100px;padding-right: 100px;">
         <picture>
             <source media="(max-width:750px)" srcset="iconep.jpg" type="image/png">
@@ -91,7 +131,48 @@
             navigator.serviceWorker.register('pwabuilder-sw.js')
         }
 
-        
+        // Abra o modal da calculadora quando o link for clicado
+        document.getElementById('link-calculadora').addEventListener('click', function() {
+            document.getElementById('calculadora-modal').style.display = 'block';
+        });
+
+        // Feche o modal quando o botão de fechar for clicado
+        document.getElementById('fechar-calculadora').addEventListener('click', function() {
+            document.getElementById('calculadora-modal').style.display = 'none';
+        });
+
+        // Feche o modal se o usuário clicar fora dele
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById('calculadora-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Função para calcular a melhor opção (seu código JavaScript para a calculadora)
+        document.getElementById('calcular').addEventListener('click', function() {
+            document.getElementById('calcular').addEventListener('click', function() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var quantidade1 = parseFloat(document.getElementById('quantidade1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+            var quantidade2 = parseFloat(document.getElementById('quantidade2').value);
+
+            if (isNaN(valor1) || isNaN(quantidade1) || isNaN(valor2) || isNaN(quantidade2)) {
+                document.getElementById('resultado').textContent = 'Por favor, insira valores válidos.';
+            } else {
+                var precoPorUnidade1 = valor1 / quantidade1;
+                var precoPorUnidade2 = valor2 / quantidade2;
+
+                if (precoPorUnidade1 < precoPorUnidade2) {
+                    document.getElementById('resultado').textContent = 'A opção 1 é a melhor escolha.';
+                } else if (precoPorUnidade1 > precoPorUnidade2) {
+                    document.getElementById('resultado').textContent = 'A opção 2 é a melhor escolha.';
+                } else {
+                    document.getElementById('resultado').textContent = 'As opções têm o mesmo preço por unidade.';
+                }
+            }
+        });
+        });
     </script>
 </body>
 </html>

@@ -1,5 +1,16 @@
 /*JS Document */
+/*Objetivo: abrir menu */
 
+        const btn_menu = document.getElementById("btn-menu");
+        const lista_suspensa = document.getElementById("lista_suspensa");
+
+        btn_menu.addEventListener("click", function() {
+            if (lista_suspensa.style.display === "" || lista_suspensa.style.display === "none") {
+        lista_suspensa.style.display = "block";
+    } else {
+        lista_suspensa.style.display = "none";
+    }
+        });
 /* Objetivo: interatividade no botão */
 /*Declaração das variáveis*/
 var a;

@@ -23,6 +23,165 @@ width: 70px;
 height: 70px;
 margin-right:10px;
 }
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    margin:0;
+}
+.list{
+    display: inline-block;
+    padding: 12px 24px;
+    background-color:lightblue;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin:2px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);  
+    width: 67%; 
+}
+
+.list:hover {
+    background-color: lightblue;
+    padding: 13px 25px;
+}
+
+.list:active{
+    background-image: linear-gradient(30deg, #59615a, #667273);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right:24px;
+    padding-left:24px;
+    }
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color:lightblue;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin:2px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);
+    cursor: pointer;   
+}
+
+.btn:hover {
+    background-color: lightblue;
+    padding: 13px 25px;
+}
+
+.btn:active{
+    background-image: linear-gradient(30deg, #59615a, #667273);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right:24px;
+    padding-left:24px;
+    }
+
+
+#btn-menu {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color:lightblue;
+        color: #000;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        margin:2px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 2px rgb(2, 0, 0);  
+       
+         
+}
+    
+#btn-menu:hover {
+        background-color: lightblue;
+        padding: 13px 25px;
+    }
+    
+#btn-menu:active{
+        background-image: linear-gradient(30deg, #59615a, #667273);
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-right:24px;
+        padding-left:24px;
+        }
+#lista_suspensa{
+    display: none;
+    position: absolute;
+    background-color:white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin-top: 2px;
+    margin-left: 0;
+    position: absolute;
+    top: 100%; 
+    right: 0; 
+}
+/* Estilos para o modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+/* Estilos para o conteúdo do modal */
+.modal-content {
+    background-color: #fff; /* Fundo branco */
+    margin: 15% auto; /* Centraliza verticalmente e deixa espaço em torno do modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px; /* Largura máxima do modal */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    position: relative;
+}
+
+/* Estilos para o botão de fechar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+}
+
+/* Estilos para o botão Calcular e outros elementos do modal */
+#calcular,
+#valor1,
+#quantidade1,
+#valor2,
+#quantidade2 {
+    width: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para o resultado */
+#resultado {
+    font-weight: bold;
+}
 
 /*Estilos do main*/
 
