@@ -48,6 +48,7 @@ function inserir() {
         valor_item.type='number';
         valor_item.placeholder = 'R$';
         var unidades=document.createElement('span');
+        
 
         // Adicione o elemento <span> ao elemento <li> com a classe 'item'
        
@@ -62,7 +63,19 @@ function inserir() {
         item.appendChild(unidades); // Adicione os textos associados ao item da lista
         item.appendChild(document.createTextNode(/*' ' + texto2 +*/ ' ' + texto3)); // Adicione os textos associados ao item da lista
         item.appendChild(valor_item);
+        adicionarBotaoExcluir(item);
 
+        function adicionarBotaoExcluir(liItem) {
+            var botaoExcluir = document.createElement('span');
+            botaoExcluir.className = 'botao-excluir';
+            botaoExcluir.textContent = '❌'; // Unicode "x"
+            botaoExcluir.addEventListener('click', function() {
+                liItem.remove(); // Remove a linha quando o botão "x" for clicado
+                calcularTotal();
+            });
+            liItem.appendChild(botaoExcluir);
+        }
+        
         checkbox.addEventListener('click', function() {
             var liItem = this.parentElement; 
             if (this.checked) {
@@ -177,6 +190,7 @@ function calcularTotal() {
     var totalCompras = document.getElementById('total_compras');
     totalCompras.textContent = 'TOTAL: R$ ' + total.toFixed(2);
 }
+
 
 // Chame a função de cálculo inicial para considerar o item que já estava presente
 calcularTotal();
