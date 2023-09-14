@@ -17,13 +17,13 @@
                 <source media="(max-width:1050px)" srcset="imgp.png" type="image/png">
                 <img src="imgm.png" alt="ícone do app">
             </picture>
-            <button id="btn-menu">
-                <svg width="24" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button>
+                <svg  id="btn-menu" width="24" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.96317 2.13703H30.6939C31.4122 2.13703 31.9999 1.7868 31.9999 1.06853C31.9999 0.350261 31.4122 3.05176e-05 30.6939 3.05176e-05H1.96317C1.2449 3.05176e-05 0.657227 0.350261 0.657227 1.06853C0.657227 1.7868 1.2449 2.13703 1.96317 2.13703ZM30.6939 21.37H1.96317C1.2449 21.37 0.657227 21.4828 0.657227 22.2011C0.657227 22.9193 1.2449 23.507 1.96317 23.507H30.6939C31.4122 23.507 31.9999 23.1568 31.9999 22.4385C31.9999 21.7072 31.4122 21.37 30.6939 21.37ZM30.6939 10.685H1.96317C1.2449 10.685 0.657227 11.0353 0.657227 11.7535C0.657227 12.4718 1.2449 12.822 1.96317 12.822H30.6939C31.4122 12.822 31.9999 12.4718 31.9999 11.7535C31.9999 11.0222 31.4122 10.685 30.6939 10.685Z" fill="#1C1C1C" aria-label="Menu"></path>
                 </svg>
                 </button>
     
-                <ul id="lista_suspensa">
+                <ul id="lista_suspensa" style="display: none;">
                     <li><a href="#" class="list" id="link-calculadora">CALCULADORA</a></li>
                     <li><a href="#" class="list" id="sobre_app">SOBRE O APP</a><!--
                     <li><a href="#contact" class="list">CONTATOS</a>-->
@@ -35,28 +35,12 @@
             <div class="modal-content">
                 <span class="close" id="fechar-calculadora">&times;</span>
                 <h2>Calculadora de comparação</h2>
-                <input type="text" id="valor1" placeholder="Valor 1">
-                <input type="text" id="quantidade1" placeholder="Quantidade 1"><br>
-                <input type="text" id="valor2" placeholder="Valor 2">
-                <input type="text" id="quantidade2" placeholder="Quantidade 2">
-                <button id="calcular">Calcular</button>
+                <input type="number" id="valor1" placeholder="Valor 1">
+                <input type="number" id="quantidade1" placeholder="Quantidade 1"><br>
+                <input type="number" id="valor2" placeholder="Valor 2">
+                <input type="number" id="quantidade2" placeholder="Quantidade 2"><br>
+                <button id="calcular" class="btn">Calcular</button>
                 <p id="resultado"></p>
-            </div>
-        </div>
-        <div id="sobre_app" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" id="fechar-calculadora">&times;</span>
-                <h2>Sobre o app</h2>
-                <p>
-                    Criado por Renata Veras Venturim
-                </p>
-                <p>
-                    Versão:1.0.0
-                </p>
-                <p>
-                    Sugestões enviar para:
-                    renata_venturim@hotmail.com
-                </p>
             </div>
         </div>
     
@@ -70,8 +54,8 @@
             Toque no botão + para criar sua lista
         </p>
         </div>
-        <div id="corpo">
-            <h1>CHECK LIST</h1>
+        <div id="corpo" class="modal-content" style="display: none;">
+            <span class="close" id="fechar-corpo">×</span>
             <span>
                 <label for="item_usuario1">
                     QNT
@@ -104,9 +88,14 @@
             <input type="button" class="f_botao" value="INSERIR">
             <!--<input type="button" class="f_botao" value="EXCLUIR">-->
 
+        </div>
+
+        <div id="list_created" style="display: none;">
+            
+            <h1>Lista</h1>
             <p id="total_compras" style="font-weight: bold;">
             </p>
-             
+            
             <p>Valor unit.</p>
             
             <ol id="f_lista" class="f_lista">
@@ -149,9 +138,8 @@
             }
         });
 
-        // Função para calcular a melhor opção (seu código JavaScript para a calculadora)
+        // Função para calcular a melhor opção 
         document.getElementById('calcular').addEventListener('click', function() {
-            document.getElementById('calcular').addEventListener('click', function() {
             var valor1 = parseFloat(document.getElementById('valor1').value);
             var quantidade1 = parseFloat(document.getElementById('quantidade1').value);
             var valor2 = parseFloat(document.getElementById('valor2').value);
@@ -164,15 +152,15 @@
                 var precoPorUnidade2 = valor2 / quantidade2;
 
                 if (precoPorUnidade1 < precoPorUnidade2) {
-                    document.getElementById('resultado').textContent = 'A opção 1 é a melhor escolha.';
+                    document.getElementById('resultado').textContent = 'A opção 1 é a mais econômica';
                 } else if (precoPorUnidade1 > precoPorUnidade2) {
-                    document.getElementById('resultado').textContent = 'A opção 2 é a melhor escolha.';
+                    document.getElementById('resultado').textContent = 'A opção 2 é a mais econômica.';
                 } else {
                     document.getElementById('resultado').textContent = 'As opções têm o mesmo preço por unidade.';
                 }
             }
         });
-        });
+
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 /*JS Document */
-/*Objetivo: abrir menu */
+/*Objetivo: interação do menu */
 
+//abrir
         const btn_menu = document.getElementById("btn-menu");
         const lista_suspensa = document.getElementById("lista_suspensa");
 
@@ -11,6 +12,39 @@
         lista_suspensa.style.display = "none";
     }
         });
+ // Feche a lista suspensa se o usuário clicar fora dele
+ 
+ window.addEventListener('click', function(event) {
+    if (event.target !== lista_suspensa && event.target !== btn_menu) {
+        lista_suspensa.style.display = "none";
+    }
+});
+ // Feche inserir se o usuário clicar fora dele
+ var modal_corpo=document.getElementById('corpo');
+ var add=document.getElementById('add');
+
+ window.addEventListener('click', function(event) {
+    if (event.target !== modal_corpo && event.target !== add) {
+        modal_corpo.style.display = 'none';
+
+        var lista = document.getElementById('f_lista');
+                if (lista.children.length === 0) {
+                    document.getElementById('list_created').style.display = 'none';
+                    checkListaVazia();
+  ;
+                } else {
+                    document.getElementById('list_created').style.display = 'block';
+                }
+    }
+});
+var inputs = document.querySelectorAll('#corpo input');
+inputs.forEach(function(input) {
+    input.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+});
+
+
 /* Objetivo: interatividade no botão */
 /*Declaração das variáveis*/
 var a;
@@ -62,6 +96,7 @@ function inserir() {
         item.appendChild(document.createTextNode(/*' ' + texto2 +*/ ' ' + texto3)); // Adicione os textos associados ao item da lista
         item.appendChild(valor_item);
         adicionarBotaoExcluir(item);
+        document.getElementById('list_created').style.display = 'block';
 
         function adicionarBotaoExcluir(liItem) {
             var botaoExcluir = document.createElement('span');
@@ -70,6 +105,15 @@ function inserir() {
             botaoExcluir.addEventListener('click', function() {
                 liItem.remove(); // Remove a linha quando o botão "x" for clicado
                 calcularTotal();
+
+                var lista = document.getElementById('f_lista');
+                if (lista.children.length === 0) {
+                    document.getElementById('list_created').style.display = 'none';
+                    checkListaVazia();
+  ;
+                } else {
+                    document.getElementById('list_created').style.display = 'block';
+                }
             });
             liItem.appendChild(botaoExcluir);
         }
@@ -105,7 +149,7 @@ function inserir() {
     } else {
         window.alert('Inserir dados do item!');
     }
-
+    checkListaVazia();
 }
 
 /*OBJETIVO: Quando clicar Enter, inserir item */
@@ -206,3 +250,26 @@ document.getElementById('add').addEventListener('click', function() {
     // Esconde a div #msg_inicial definindo o estilo diretamente
     document.getElementById('msg_inicial').style.display = 'none';
 });
+// Adicione um evento para fechar o "corpo" quando o botão "Fechar Corpo" for clicado
+document.getElementById('fechar-corpo').addEventListener('click', function() {
+    document.getElementById('corpo').style.display = 'none';
+    var lista = document.getElementById('f_lista');
+    if (lista.children.length === 0) {
+        checkListaVazia();
+    } else {
+        document.getElementById('list_created').style.display = 'block';
+    }
+});
+
+
+function checkListaVazia() {
+    var lista = document.getElementById('f_lista');
+    var msgInicial = document.getElementById('msg_inicial');
+    
+    // Verifique se a lista está vazia (sem <li> elementos)
+    if (lista.children.length === 0) {
+        msgInicial.style.display = 'block'; // Mostrar a mensagem inicial
+    } else {
+        msgInicial.style.display = 'none'; // Ocultar a mensagem inicial
+    }
+}
