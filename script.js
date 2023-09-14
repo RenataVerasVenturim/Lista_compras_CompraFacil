@@ -8,10 +8,7 @@ var lista_suspensa = document.getElementById("lista_suspensa");
 btn_menu.addEventListener("click", function() {
     if (lista_suspensa.style.display === "" || lista_suspensa.style.display === "none") {
         lista_suspensa.style.display = "block";
-    } else {
-        lista_suspensa.style.display = "none";
-    }
-});
+}});
 
 // Fechar itens se o usuário clicar fora deles
 var lista_suspensa = document.getElementById("lista_suspensa");
@@ -317,3 +314,71 @@ document.getElementById('link-sobre_app').addEventListener('click', function() {
 document.getElementById('fechar-sobre_app').addEventListener('click', function() {
     document.getElementById('sobre_app-modal').style.display = 'none';
 });
+//criar salvamento da lista
+// Função para exibir as listas salvas quando o link "LISTAS" for clicado
+function exibirListasSalvas() {
+    const listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+    const listaDropdown = document.getElementById("listas-salvas");
+  
+    listaDropdown.innerHTML = ""; // Limpar itens anteriores
+  
+    listasSalvas.forEach((lista, index) => {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#";
+        link.classList.add("minhas_listas_salvas");
+        link.textContent = `Lista ${index + 1}`;
+        link.addEventListener("click", () => {
+            // Implemente a lógica para carregar e exibir a lista selecionada
+            alert(`Você selecionou a Lista ${index + 1}`);
+        });
+        listItem.appendChild(link);
+        listaDropdown.appendChild(listItem);
+    });
+}
+
+// Adicione um evento de clique para o link "LISTAS"
+document.getElementById("minhas_listas").addEventListener("click", exibirListasSalvas);
+
+// Função para salvar a lista no localStorage
+function salvarLista() {
+    const listaAtual = document.getElementById("list_created").innerHTML;
+    
+    if (listaAtual) {
+        const listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+        listasSalvas.push(listaAtual);
+        localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas));
+        alert("Lista salva com sucesso!");
+        
+        // Após salvar a lista, atualize as listas exibidas
+        exibirListasSalvas();
+      
+        // Verifique o estado do localStorage após o salvamento
+        console.log(localStorage.getItem("minhas_listas"));
+    } else {
+        alert("A lista está vazia. Adicione itens antes de salvar.");
+    }
+}
+
+// Função para carregar listas do localStorage e exibi-las no menu suspenso
+function carregarListas() {
+    exibirListasSalvas();
+}
+
+// Chame a função para carregar listas quando a página for carregada
+carregarListas();
+
+// Adicione um evento de clique para o botão "Salvar Lista"
+document.getElementById("salvar-lista").addEventListener("click", salvarLista);
+
+/*aparecer listas salvas */
+var todaslistas = document.getElementById('minhas_listas');
+
+todaslistas.addEventListener('click', mostrar_listas_salvas);
+
+function mostrar_listas_salvas(event) {
+
+    var listas_salvas = document.getElementById('listas-salvas');
+
+    listas_salvas.style.display = "block";
+}
