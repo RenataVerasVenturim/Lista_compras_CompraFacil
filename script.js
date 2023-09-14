@@ -6,20 +6,24 @@ var btn_menu = document.getElementById("btn-menu");
 var lista_suspensa = document.getElementById("lista_suspensa");
 
 btn_menu.addEventListener("click", function() {
-    if (lista_suspensa.style.display === "" || lista_suspensa.style.display === "none") {
+    if (lista_suspensa.style.display !== "none") {
+        lista_suspensa.style.display = "none";
+    } else {
         lista_suspensa.style.display = "block";
-}});
+    }
+});
+
 
 // Fechar itens se o usuário clicar fora deles
-var lista_suspensa = document.getElementById("lista_suspensa");
+//var lista_suspensa = document.getElementById("lista_suspensa");
 var modal_corpo = document.getElementById('corpo');
 var add = document.getElementById('add');
 var nome_lista = document.getElementById('nome_lista');
 var btn_menu = document.getElementById("btn-menu");
 
 window.addEventListener('click', function(event) {
-    if (event.target !== lista_suspensa && event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista) {
-        lista_suspensa.style.display = "none";
+    if (/*event.target !== lista_suspensa && */event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista) {
+        /*lista_suspensa.style.display = "none";*/
         modal_corpo.style.display = 'none';
         nome_lista.style.display='none';
       
@@ -373,12 +377,14 @@ document.getElementById("salvar-lista").addEventListener("click", salvarLista);
 
 /*aparecer listas salvas */
 var todaslistas = document.getElementById('minhas_listas');
+var listas_salvas = document.getElementById('listas-salvas');
 
-todaslistas.addEventListener('click', mostrar_listas_salvas);
+todaslistas.addEventListener('click', function(){
 
-function mostrar_listas_salvas(event) {
+    if(listas_salvas.style.display === "none" || listas_salvas.style.display === "" ){
+        listas_salvas.style.display = "block";
+    }else{
+        listas_salvas.style.display="none";
+    }
 
-    var listas_salvas = document.getElementById('listas-salvas');
-
-    listas_salvas.style.display = "block";
-}
+});
