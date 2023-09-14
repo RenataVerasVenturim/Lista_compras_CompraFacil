@@ -334,20 +334,8 @@ function carregarListaSelecionada(index) {
         calcularTotal(); 
         checkListaVazia();
         atribuirEventoExcluir()
-
+        adicionarFuncionalidadeAItensCarregados();
     };
-}
-
-function atribuirEventoExcluir() {
-    var botoesExcluir = document.querySelectorAll('.botao-excluir');
-
-    botoesExcluir.forEach(function(botao) {
-        botao.addEventListener('click', function() {
-            var liItem = this.parentElement;
-            liItem.remove();
-            calcularTotal();
-        });
-    });
 }
 
 function exibirListasSalvas() {
@@ -418,3 +406,39 @@ todaslistas.addEventListener('click', function(){
         listas_salvas.style.display="none";
     }
 })
+// Função para adicionar funcionalidade aos itens carregados do armazenamento
+function adicionarFuncionalidadeAItensCarregados() {
+    // Selecione todos os itens carregados do armazenamento
+    var itensCarregados = document.querySelectorAll('.item');
+
+    itensCarregados.forEach(function(item) {
+        var checkbox = item.querySelector('.li_checkbox');
+        checkbox.addEventListener('click', function() {
+            calcularTotal();
+        });
+
+        // Adicione funcionalidade para riscar e mover para o final da lista
+        checkbox.addEventListener('click', function() {
+            var liItem = this.parentElement;
+            if (liItem) {
+                if (this.checked) {
+                    liItem.style.textDecoration = 'line-through';
+                    var lista_tarefas = document.getElementById('f_lista');
+                    if (lista_tarefas.contains(liItem)) {
+                        lista_tarefas.removeChild(liItem);
+                        lista_tarefas.appendChild(liItem);
+                    }
+                } else {
+                    liItem.style.textDecoration = 'none';
+                    var lista_tarefas = document.getElementById('f_lista');
+                    if (lista_tarefas.contains(liItem)) {
+                        lista_tarefas.removeChild(liItem);
+                        lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
+                    }
+                }
+                calcularTotal();
+            }
+        });
+        
+        });
+    }
