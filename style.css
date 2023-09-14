@@ -33,11 +33,30 @@ main{
     text-align: center;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #000;
+    position: absolute;
+    top: 5.0em;
+    left: 0.3em;
+    right: 0.3em;
+    bottom: 0.3em;
+    overflow-y: auto;
 }
 
 main span{
     display: inline-block;
     margin-right: 10px;
+}
+#msg_inicial{
+    margin:auto;
+    padding: 20vh;
+}
+#frase_inicial{
+    color:gray;
+    text-align: center;
+    font-size: 80%;
+}
+
+#corpo {
+    display: none;
 }
 
 #item_usuario1 {
@@ -62,19 +81,18 @@ p{
 .valor_item {
     position:absolute;
     right: 40px;
+    width: 48px;
+    height: 25px;
 }
 
 ol{
     list-style-type: none;
 }
-.valor_item{
-    width: 48px;
-    height: 35px;
-}
+
 
 .f_botao{    
-    background-color: black;
-    color:white;
+    background-color: lightblue;
+    color:black;
     padding:6px 26px ;
     margin-top: 10px ;
     margin-bottom: 10px;
@@ -84,6 +102,12 @@ ol{
 .f_botao:hover{
     
     padding:8px 28px;
+}
+
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 footer {

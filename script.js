@@ -13,21 +13,8 @@ a = document.getElementsByClassName('f_botao')[0];
 
 /*Saída de dados*/
 /*Adicionar evento aos botões */
-a.addEventListener('mouseenter', entrar);
-a.addEventListener('mouseout', sair);
-a.addEventListener('touchend', sair);
 a.addEventListener('click', inserir);
 
-function entrar() {
-    a.style.background = 'green';
-    a.value = 'INSERIR';
-};
-
-function sair() {
-    a.style.background = 'black';
-    a.style.color = 'white';
-    a.value = 'INSERIR';
-};
 
 /* OBJETIVO: INSERIR ELEMENTO DOM */
 /*Entrada de dados*/
@@ -38,7 +25,7 @@ function inserir() {
     var texto3 = document.getElementById('item_usuario3').value;
 
     if (texto3 !== "" && texto1!=="") {
-        a.style.background = 'gray';
+        a.style.background = 'lightgray';
         a.value = 'INSERIDO';
 
         var item = document.createElement('li'); // Crie um elemento <li> para a lista
@@ -75,7 +62,7 @@ function inserir() {
             });
             liItem.appendChild(botaoExcluir);
         }
-        
+
         checkbox.addEventListener('click', function() {
             var liItem = this.parentElement; 
             if (this.checked) {
@@ -98,7 +85,12 @@ function inserir() {
         document.getElementById('item_usuario3').value = ""; // Esvazie o campo de texto3
         /*document.getElementById('item_usuario2').value = "unidade(s)"; // Esvazie o campo de texto2*/
         document.getElementById('item_usuario1').value = ""; // Esvazie o campo de texto1
-
+       
+        setTimeout(function() {
+            a.style.background = 'lightblue';
+            a.style.color = 'black';
+            a.value = 'INSERIR';
+        }, 300);
     } else {
         window.alert('Inserir dados do item!');
     }
@@ -119,11 +111,11 @@ function clicou_enter(tecla) {
 
 /*SEGUNDO BOTAO*/
 /*Relacionar qual botão*/
-b = document.getElementsByClassName('f_botao')[1];
+/*b = document.getElementsByClassName('f_botao')[1];
 
 /*Saída de dados*/
 /*Adicionar eventos ao botão */
-b.addEventListener('click', excluir);
+/*b.addEventListener('click', excluir);
 b.addEventListener('mouseenter', entrar2);
 b.addEventListener('mouseout', sair2);
 
@@ -152,6 +144,7 @@ function excluir() {
     // Após a exclusão, recalcule o total
     calcularTotal();
 }
+*/
 
 // Adicione um evento de clique a todos os checkboxes
 var checkboxes = document.querySelectorAll('.li_checkbox');
@@ -195,3 +188,10 @@ function calcularTotal() {
 // Chame a função de cálculo inicial para considerar o item que já estava presente
 calcularTotal();
 
+document.getElementById('add').addEventListener('click', function() {
+    // Remove a classe CSS que esconde a div #corpo
+    document.getElementById('corpo').style.display = 'block';
+
+    // Esconde a div #msg_inicial definindo o estilo diretamente
+    document.getElementById('msg_inicial').style.display = 'none';
+});

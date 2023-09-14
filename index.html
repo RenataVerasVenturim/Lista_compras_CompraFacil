@@ -12,19 +12,26 @@
 <body>
     <header>
         <nav>
-            <img src="logo.png" alt="logo do CompraFácil" height="100" width="100">
+            <picture>
+                <source media="(max-width:750px)" srcset="imgp.png" type="image/png">
+                <source media="(max-width:1050px)" srcset="imgp.png" type="image/png">
+                <img src="imgm.png" alt="ícone do app">
+            </picture>
         </nav>
     </header>
     <main>
+        <div id="msg_inicial" style="padding-right: 100.000;padding-left: 100px;padding-right: 100px;">
         <picture>
-            <source media="(max-width:750px)" srcset="imgp.jpg" type="image/jpg">
-            <source media="(max-width:1050px)" srcset="imgp.jpg" type="image/jpg">
-            <img src="imgm.jpg" alt="ícone do app">
+            <source media="(max-width:750px)" srcset="iconep.jpg" type="image/png">
+            <source media="(max-width:1050px)" srcset="iconep.jpg" type="image/png">
+            <img src="iconem.jpg" alt="ícone do app">
         </picture>
-        <h1>
-            CompraFácil
-        </h1>
+        <p id="frase_inicial">
+            Toque no botão + para criar sua lista
+        </p>
+        </div>
         <div id="corpo">
+            <h1>CHECK LIST</h1>
             <span>
                 <label for="item_usuario1">
                     QNT
@@ -55,26 +62,36 @@
             <br>
             
             <input type="button" class="f_botao" value="INSERIR">
-            <input type="button" class="f_botao" value="EXCLUIR">
+            <!--<input type="button" class="f_botao" value="EXCLUIR">-->
 
+            <p id="total_compras" style="font-weight: bold;">
+            </p>
+             
             <p>Valor unit.</p>
             
             <ol id="f_lista" class="f_lista">
             </ol>
-
-            <p id="total_compras">
-               <b>TOTAL: R$</b> 
-            </p>
         </div>
+
+            <div class="add-button">
+                <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="25" fill="lightblue" />
+                    <text id="add" x="50%" y="50%" font-size="24" text-anchor="middle" dy=".3em" fill="white">+</text>
+                </svg>
+            </div>
+        
+        
     </main>
-    <footer>
+    <!--<footer>
         &copy; 2023 Renata Veras Venturim. Todos os direitos reservados.</p>
-    </footer>
+    </footer>-->
     <script src="script.js"></script>
     <script>
         if(typeof navigator.serviceWorker !== 'undefined'){
             navigator.serviceWorker.register('pwabuilder-sw.js')
         }
+
+        
     </script>
 </body>
 </html>
