@@ -1,6 +1,7 @@
 /*JS Document */
 /*Objetivo: interação do menu */
 
+
 // Abrir
 var btn_menu = document.getElementById("btn-menu");
 var lista_suspensa = document.getElementById("lista_suspensa");
@@ -320,12 +321,41 @@ document.getElementById('fechar-sobre_app').addEventListener('click', function()
 });
 //criar salvamento da lista
 // Função para exibir as listas salvas quando o link "LISTAS" for clicado
+// Array global para armazenar listas salvas
+let listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+
+// Função para carregar e exibir a lista selecionada
+function carregarListaSelecionada(index) {
+    const listaSelecionada = listasSalvas[index];
+    if (listaSelecionada) {
+        document.getElementById("list_created").innerHTML = listaSelecionada;
+        document.getElementById("listas-salvas").style.display = "none";
+        document.querySelector("#list_created h1").textContent = `Lista ${index + 1}`;
+        calcularTotal(); 
+        checkListaVazia();
+        atribuirEventoExcluir()
+
+    };
+}
+
+function atribuirEventoExcluir() {
+    var botoesExcluir = document.querySelectorAll('.botao-excluir');
+
+    botoesExcluir.forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            var liItem = this.parentElement;
+            liItem.remove();
+            calcularTotal();
+        });
+    });
+}
+
 function exibirListasSalvas() {
-    const listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+
     const listaDropdown = document.getElementById("listas-salvas");
-  
+
     listaDropdown.innerHTML = ""; // Limpar itens anteriores
-  
+
     listasSalvas.forEach((lista, index) => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
@@ -333,13 +363,17 @@ function exibirListasSalvas() {
         link.classList.add("minhas_listas_salvas");
         link.textContent = `Lista ${index + 1}`;
         link.addEventListener("click", () => {
-            // Implemente a lógica para carregar e exibir a lista selecionada
-            alert(`Você selecionou a Lista ${index + 1}`);
+            carregarListaSelecionada(index); // Carregar a lista selecionada
+            msgInicial.style.display = 'none'; // Esconder msgInicial ao clicar na lista
         });
         listItem.appendChild(link);
         listaDropdown.appendChild(listItem);
     });
+
+    var msgInicial = document.getElementById('msg_inicial');
+
 }
+
 
 // Adicione um evento de clique para o link "LISTAS"
 document.getElementById("minhas_listas").addEventListener("click", exibirListasSalvas);
@@ -374,17 +408,13 @@ carregarListas();
 
 // Adicione um evento de clique para o botão "Salvar Lista"
 document.getElementById("salvar-lista").addEventListener("click", salvarLista);
-
-/*aparecer listas salvas */
 var todaslistas = document.getElementById('minhas_listas');
 var listas_salvas = document.getElementById('listas-salvas');
 
 todaslistas.addEventListener('click', function(){
-
     if(listas_salvas.style.display === "none" || listas_salvas.style.display === "" ){
         listas_salvas.style.display = "block";
     }else{
         listas_salvas.style.display="none";
     }
-
-});
+})
