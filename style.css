@@ -1,28 +1,29 @@
 @charset "utf-8";
 
-/*Estilos do body*/
-body{    
+/* Estilos do body */
+body {
     font-size: 18px;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
 }
 
 /* Estilos do header e da navegação */
-header nav{
+header nav {
     background-color: #f2f2f2;
     padding: 3px;
-    display:flex;
+    display: flex;
     align-items: center;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px #000;   
+    box-shadow: 2px 2px 2px #000;
     position: relative;
 }
 
-nav img{
-width: 70px;
-height: 70px;
-margin-right:10px;
+nav img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
 }
+
 nav button {
     background: none;
     border: none;
@@ -32,20 +33,21 @@ nav button {
     padding: 10px;
     position: absolute;
     right: 20px;
-    margin:0;
+    margin: 0;
 }
-.list{
+
+.list {
     display: inline-block;
     padding: 12px 24px;
-    background-color:lightblue;
+    background-color: lightblue;
     color: #000;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
-    margin:2px;
+    margin: 2px;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px rgb(2, 0, 0);  
-    width: 67%; 
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);
+    width: 67%;
 }
 
 .list:hover {
@@ -53,26 +55,26 @@ nav button {
     padding: 13px 25px;
 }
 
-.list:active{
+.list:active {
     background-image: linear-gradient(30deg, #59615a, #667273);
     padding-top: 12px;
     padding-bottom: 12px;
-    padding-right:24px;
-    padding-left:24px;
-    }
+    padding-right: 24px;
+    padding-left: 24px;
+}
 
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    background-color:lightblue;
+    background-color: lightblue;
     color: #000;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
-    margin:2px;
+    margin: 2px;
     border-radius: 5px;
     box-shadow: 2px 2px 2px rgb(2, 0, 0);
-    cursor: pointer;   
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -80,46 +82,44 @@ nav button {
     padding: 13px 25px;
 }
 
-.btn:active{
+.btn:active {
     background-image: linear-gradient(30deg, #59615a, #667273);
     padding-top: 12px;
     padding-bottom: 12px;
-    padding-right:24px;
-    padding-left:24px;
-    }
-
+    padding-right: 24px;
+    padding-left: 24px;
+}
 
 #btn-menu {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color:lightblue;
-        color: #000;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-        margin:0px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 2px rgb(2, 0, 0);  
-       
-         
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: lightblue;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin: 0px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);
 }
-    
+
 #btn-menu:hover {
-        background-color: lightblue;
-        padding: 13px 25px;
-    }
-    
-#btn-menu:active{
-        background-image: linear-gradient(30deg, #59615a, #667273);
-        padding-top: 12px;
-        padding-bottom: 12px;
-        padding-right:24px;
-        padding-left:24px;
-        }
-#lista_suspensa{
+    background-color: lightblue;
+    padding: 13px 25px;
+}
+
+#btn-menu:active {
+    background-image: linear-gradient(30deg, #59615a, #667273);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+#lista_suspensa {
     display: none;
     position: absolute;
-    background-color:white;
+    background-color: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -128,9 +128,10 @@ nav button {
     margin-top: 2px;
     margin-left: 0;
     position: absolute;
-    top: 100%; 
-    right: 0; 
+    top: 100%;
+    right: 0;
 }
+
 /* Estilos para o modal */
 .modal {
     display: none;
@@ -147,7 +148,7 @@ nav button {
 /* Estilos para o conteúdo do modal */
 .modal-content {
     background-color: #fff; /* Fundo branco */
-    margin:auto; 
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
@@ -170,6 +171,10 @@ nav button {
 }
 
 /* Estilos para o botão Calcular e outros elementos do modal */
+#calculadora-modal {
+    display: none;
+}
+
 #calcular,
 #valor1,
 #quantidade1,
@@ -184,13 +189,18 @@ nav button {
 #resultado {
     font-weight: bold;
 }
-
-/*Estilos do main*/
-
-main{
-    background-color:#fff;
-    border:1px solid #bfb8b8;
-    padding:35px 5px;
+#dadosapp{
+    list-style-type: none;
+    padding-left:0;
+}
+.linha_sobre_app{
+    text-align: left;
+}
+/* Estilos do main */
+main {
+    background-color: #fff;
+    border: 1px solid #bfb8b8;
+    padding: 35px 5px;
     text-align: center;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #000;
@@ -202,16 +212,20 @@ main{
     overflow-y: auto;
 }
 
-main span{
+main span {
     display: inline-block;
     margin-right: 10px;
 }
-#msg_inicial{
-    margin:auto;
+
+#msg_inicial {
+    margin: auto;
     padding: 20vh;
+    padding-right: 100px;
+    padding-left: 100px;
 }
-#frase_inicial{
-    color:gray;
+
+#frase_inicial {
+    color: gray;
     text-align: center;
     font-size: 80%;
 }
@@ -220,61 +234,74 @@ main span{
     display: none;
 }
 
+#nome_lista {
+    display: none;
+}
+
+.input_nome {
+    text-align: center;
+    align-items: center;
+}
+
 #item_usuario1 {
-    width: 50px; 
+    width: 50px;
     height: 35px;
 }
+
 #item_usuario3 {
-    width: 120px; 
+    width: 120px;
     height: 35px;
 }
-p{
+
+p {
     text-align: right;
     margin-right: 5px;
 }
-#f_lista{
+
+#f_lista {
     text-align: left;
     margin-bottom: 25px;
 }
-#li_item{
+
+#li_item {
     margin-bottom: 2px;
 }
+
 .valor_item {
-    position:absolute;
+    position: absolute;
     right: 40px;
     width: 48px;
     height: 25px;
 }
 
-ol{
+ol {
     list-style-type: none;
 }
-.btn{  
+
+.btn {
     background-color: lightblue;
-    color:black;
-    padding:6px 26px ;
-    margin-top: 10px ;
+    color: black;
+    padding: 6px 26px;
+    margin-top: 10px;
     margin-bottom: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.btn:hover{
-    padding:8px 28px;
+.btn:hover {
+    padding: 8px 28px;
 }
 
-
-.f_botao{    
+.f_botao {
     background-color: lightblue;
-    color:black;
-    padding:6px 26px ;
-    margin-top: 10px ;
+    color: black;
+    padding: 6px 26px;
+    margin-top: 10px;
     margin-bottom: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.f_botao:hover{
-    
-    padding:8px 28px;
+.f_botao:hover {
+    padding: 8px 28px;
 }
 
 .add-button {
@@ -289,6 +316,5 @@ footer {
     text-align: center;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px rgb(2, 0, 0);   
-
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);
 }

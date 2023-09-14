@@ -18,16 +18,28 @@
                 <img src="imgm.png" alt="ícone do app">
             </picture>
             <button>
-                <svg  id="btn-menu" width="24" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg id="btn-menu" width="24" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.96317 2.13703H30.6939C31.4122 2.13703 31.9999 1.7868 31.9999 1.06853C31.9999 0.350261 31.4122 3.05176e-05 30.6939 3.05176e-05H1.96317C1.2449 3.05176e-05 0.657227 0.350261 0.657227 1.06853C0.657227 1.7868 1.2449 2.13703 1.96317 2.13703ZM30.6939 21.37H1.96317C1.2449 21.37 0.657227 21.4828 0.657227 22.2011C0.657227 22.9193 1.2449 23.507 1.96317 23.507H30.6939C31.4122 23.507 31.9999 23.1568 31.9999 22.4385C31.9999 21.7072 31.4122 21.37 30.6939 21.37ZM30.6939 10.685H1.96317C1.2449 10.685 0.657227 11.0353 0.657227 11.7535C0.657227 12.4718 1.2449 12.822 1.96317 12.822H30.6939C31.4122 12.822 31.9999 12.4718 31.9999 11.7535C31.9999 11.0222 31.4122 10.685 30.6939 10.685Z" fill="#1C1C1C" aria-label="Menu"></path>
                 </svg>
-                </button>
-    
-                <ul id="lista_suspensa" style="display: none;">
-                    <li><a href="#" class="list" id="link-calculadora">CALCULADORA</a></li>
-                    <li><a href="#" class="list" id="sobre_app">SOBRE O APP</a><!--
-                    <li><a href="#contact" class="list">CONTATOS</a>-->
-                </ul>
+            </button>
+
+            <ul id="lista_suspensa" style="display: none;">
+                <li>
+                    <a href="#" class="list" id="link-calculadora">
+                        CALCULADORA
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list" id="minhas_listas">
+                        LISTAS
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list" id="link-sobre_app">
+                        SOBRE O APP
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -43,124 +55,73 @@
                 <p id="resultado"></p>
             </div>
         </div>
-    
+        <div id="sobre_app-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="fechar-sobre_app">&times;</span>
+                <ul id="dadosapp">
+                    <hr>
+                    <strong>Dados do app:</strong> 
+                    <hr>                 
+                    <li class="linha_sobre_app">Nome: CompraFácil</li class="linha_sobre_app">
+                    <li class="linha_sobre_app">Versão 1.0.0</li class="linha_sobre_app">
+                    <li class="linha_sobre_app">Criado por: Renata Veras Venturim</li class="linha_sobre_app">
+                    <hr>
+                    <strong>Funções:</strong> 
+                    <hr>                 
+                    <li class="linha_sobre_app">✅Calculadora para comparar diferentes medidas</li class="linha_sobre_app">
+                    <li class="linha_sobre_app">✅Cálculo do total do carrinho para verificação antes de ir ao Caixa</li class="linha_sobre_app">
+                    <li class="linha_sobre_app">✅Checklist</li class="linha_sobre_app">
+                    <li class="linha_sobre_app">✅itens faltantes são movimentados para cima</li class="linha_sobre_app">
+                </ul>            
+            </div>
+        </div>
         <div id="msg_inicial" style="padding-right: 100.000;padding-left: 100px;padding-right: 100px;">
-        <picture>
-            <source media="(max-width:750px)" srcset="iconep.jpg" type="image/png">
-            <source media="(max-width:1050px)" srcset="iconep.jpg" type="image/png">
-            <img src="iconem.jpg" alt="ícone do app">
-        </picture>
-        <p id="frase_inicial">
-            Toque no botão + para criar sua lista
-        </p>
+            <picture>
+                <source media="(max-width:750px)" srcset="iconep.jpg" type="image/png">
+                <source media="(max-width:1050px)" srcset="iconep.jpg" type="image/png">
+                <img src="iconem.jpg" alt="ícone do app">
+            </picture>
+            <p id="frase_inicial">Toque no botão + para criar sua lista</p>
+        </div>
+        <div id="nome_lista" class="modal-content" style="display: none;">
+            <span class="close" id="fechar-lista-nome">×</span>
+            <h2>Insira o nome da sua lista!</h2>
+            <input id="input_nome" type="text" required placeholder="Digite aqui" width="200px">
+            <br><input type="button" id="btn-nome" value="CRIAR LISTA" class="btn">
         </div>
         <div id="corpo" class="modal-content" style="display: none;">
             <span class="close" id="fechar-corpo">×</span>
             <span>
-                <label for="item_usuario1">
-                    QNT
-                </label>
+                <label for="item_usuario1">QNT</label>
                 <br><input type="number" id="item_usuario1" placeholder="1,.." required>
             </span>
-            <!--<span>
-                <label for="item_usuario2">
-                Unid <br> 
-                medida<br>
-                </label>
-                <select id="item_usuario2">
-                    <option value="unidade(s)">unidade(s)</option>
-                    <option value="Kg">Kg</option>
-                    <option value="g">g</option>
-                    <option value="bandeja(s)">bandeja(s)</option>
-                    <option value="caixa(s)">caixa(s)</option>
-                    <option value="pacote(s)">pacote(s)</option>
-                </select>
-            </span>-->
             <span>
-                <label for="item_usuario3">
-                ITEM
-                <br>
-                </label>
-                <input type="text" id="item_usuario3" name="item_usuario" placeholder="Arroz, feijão..."> 
+                <label for="item_usuario3">ITEM</label>
+                <br><input type="text" id="item_usuario3" name="item_usuario" placeholder="Arroz, feijão...">
             </span>
             <br>
-            
             <input type="button" class="f_botao" value="INSERIR">
-            <!--<input type="button" class="f_botao" value="EXCLUIR">-->
-
         </div>
 
         <div id="list_created" style="display: none;">
-            
             <h1>Lista</h1>
-            <p id="total_compras" style="font-weight: bold;">
-            </p>
-            
+            <p id="total_compras" style="font-weight: bold;"></p>
             <p>Valor unit.</p>
-            
-            <ol id="f_lista" class="f_lista">
-            </ol>
+            <ol id="f_lista" class="f_lista"></ol>
         </div>
 
-            <div class="add-button">
-                <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="30" cy="30" r="25" fill="lightblue" />
-                    <text id="add" x="50%" y="50%" font-size="24" text-anchor="middle" dy=".3em" fill="white">+</text>
-                </svg>
-            </div>
-        
-        
+        <div class="add-button">
+            <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="30" r="25" fill="lightblue" />
+                <text id="add" x="50%" y="50%" font-size="24" text-anchor="middle" dy=".3em" fill="white">+</text>
+            </svg>
+        </div>
     </main>
-    <!--<footer>
-        &copy; 2023 Renata Veras Venturim. Todos os direitos reservados.</p>
-    </footer>-->
     <script src="script.js"></script>
     <script>
-        if(typeof navigator.serviceWorker !== 'undefined'){
+        if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('pwabuilder-sw.js')
         }
-
-        // Abra o modal da calculadora quando o link for clicado
-        document.getElementById('link-calculadora').addEventListener('click', function() {
-            document.getElementById('calculadora-modal').style.display = 'block';
-        });
-
-        // Feche o modal quando o botão de fechar for clicado
-        document.getElementById('fechar-calculadora').addEventListener('click', function() {
-            document.getElementById('calculadora-modal').style.display = 'none';
-        });
-
-        // Feche o modal se o usuário clicar fora dele
-        window.addEventListener('click', function(event) {
-            var modal = document.getElementById('calculadora-modal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Função para calcular a melhor opção 
-        document.getElementById('calcular').addEventListener('click', function() {
-            var valor1 = parseFloat(document.getElementById('valor1').value);
-            var quantidade1 = parseFloat(document.getElementById('quantidade1').value);
-            var valor2 = parseFloat(document.getElementById('valor2').value);
-            var quantidade2 = parseFloat(document.getElementById('quantidade2').value);
-
-            if (isNaN(valor1) || isNaN(quantidade1) || isNaN(valor2) || isNaN(quantidade2)) {
-                document.getElementById('resultado').textContent = 'Por favor, insira valores válidos.';
-            } else {
-                var precoPorUnidade1 = valor1 / quantidade1;
-                var precoPorUnidade2 = valor2 / quantidade2;
-
-                if (precoPorUnidade1 < precoPorUnidade2) {
-                    document.getElementById('resultado').textContent = 'A opção 1 é a mais econômica';
-                } else if (precoPorUnidade1 > precoPorUnidade2) {
-                    document.getElementById('resultado').textContent = 'A opção 2 é a mais econômica.';
-                } else {
-                    document.getElementById('resultado').textContent = 'As opções têm o mesmo preço por unidade.';
-                }
-            }
-        });
-
     </script>
 </body>
 </html>
