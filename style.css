@@ -310,11 +310,6 @@ ol {
     right: 20px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px rgb(2, 0, 0);
+add-button{
+    cursor:pointer;
 }
