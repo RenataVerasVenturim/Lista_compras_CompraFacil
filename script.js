@@ -34,7 +34,7 @@ function sair() {
 //invalidar campo vazio
 function inserir() {
     var texto1 = document.getElementById('item_usuario1').value;
-    var texto2 = document.getElementById('item_usuario2').value;
+    /*var texto2 = document.getElementById('item_usuario2').value;*/
     var texto3 = document.getElementById('item_usuario3').value;
 
     if (texto3 !== "" && texto1!=="") {
@@ -60,7 +60,7 @@ function inserir() {
         unidades.appendChild(document.createTextNode(texto1));
         item.appendChild(checkbox);                
         item.appendChild(unidades); // Adicione os textos associados ao item da lista
-        item.appendChild(document.createTextNode(' ' + texto2 + ' ' + texto3)); // Adicione os textos associados ao item da lista
+        item.appendChild(document.createTextNode(/*' ' + texto2 +*/ ' ' + texto3)); // Adicione os textos associados ao item da lista
         item.appendChild(valor_item);
 
         checkbox.addEventListener('click', function() {
@@ -71,7 +71,7 @@ function inserir() {
         lista_tarefas.appendChild(item); // Adicione o item da lista (com a caixa de seleção e texto) à lista
 
         document.getElementById('item_usuario3').value = ""; // Esvazie o campo de texto3
-        document.getElementById('item_usuario2').value = "unidade(s)"; // Esvazie o campo de texto2
+        /*document.getElementById('item_usuario2').value = "unidade(s)"; // Esvazie o campo de texto2*/
         document.getElementById('item_usuario1').value = ""; // Esvazie o campo de texto1
 
     } else {
