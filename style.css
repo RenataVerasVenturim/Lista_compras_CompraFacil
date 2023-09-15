@@ -4,7 +4,7 @@
 body {
     font-size: 18px;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 /* Estilos do header e da navegação */
@@ -236,11 +236,14 @@ main span {
 
 #nome_lista {
     display: none;
+    font-size: 16px;
 }
 
 .input_nome {
     text-align: center;
     align-items: center;
+    height: 35px;
+    width: 200px;
 }
 
 #item_usuario1 {
@@ -304,12 +307,29 @@ ol {
     padding: 8px 28px;
 }
 
-.add-button {
+.minhas_listas_salvas{
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgb(56, 75, 81);
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin: 2px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(2, 0, 0);
+    width: 67%;
+}
+#listas-salvas{
+    display:none;
+    list-style-type: none;
+    padding:0px;
+    font-size:70%;
+}
+
+#add-button{
+    cursor:pointer;
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
-
-add-button{
-    cursor:pointer;
 }
