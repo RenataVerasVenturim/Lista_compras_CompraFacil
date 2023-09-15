@@ -22,6 +22,7 @@ var add = document.getElementById('add');
 var nome_lista = document.getElementById('nome_lista');
 var btn_menu = document.getElementById("btn-menu");
 
+
 window.addEventListener('click', function(event) {
     if (/*event.target !== lista_suspensa && */event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista) {
         /*lista_suspensa.style.display = "none";*/
@@ -212,6 +213,20 @@ document.getElementById('fechar-lista-nome').addEventListener('click', function(
     checkListaVazia();
 });
 
+document.getElementById('fechar-list_created').addEventListener('click', function() {
+console.log('Botão de fechamento clicado')
+document.getElementById('list_created').style.display = 'none';
+console.log('Minimizado!')
+
+    /*var lista = document.getElementById('f_lista');
+    if (lista.children.length === 0) {
+        checkListaVazia();
+    } else {
+        document.getElementById('list_created').style.display = 'block';
+    }*/
+    checkListaVazia();
+});
+
 function checkListaVazia() {
     var lista = document.getElementById('f_lista');
     var msgInicial = document.getElementById('msg_inicial');
@@ -332,7 +347,7 @@ function carregarListaSelecionada(index) {
         document.getElementById("listas-salvas").style.display = "none";
         document.querySelector("#list_created h1").textContent = `Lista ${index + 1}`;
         calcularTotal(); 
-        checkListaVazia();
+        /*checkListaVazia();*/
         atribuirEventoExcluir()
         adicionarFuncionalidadeAItensCarregados();
     };
@@ -455,3 +470,38 @@ function adicionarFuncionalidadeAItensCarregados() {
         
         });
     }
+
+/*limpar excluindo todas as listas */
+/*   var listaSuspensa = document.getElementById('listas-salvas');
+    listaSuspensa.innerHTML = '';
+    localStorage.setItem("minhas_listas", JSON.stringify([]));
+    // Limpe a lista suspensa no DOM
+    var listaSuspensa = document.getElementById('listas-salvas');
+    listaSuspensa.innerHTML = '';
+
+    // Limpe o armazenamento local (localStorage)
+    localStorage.setItem("minhas_listas", JSON.stringify([]));*/
+
+    document.getElementById('excluir-list_created').addEventListener('click', function() {
+        var listaParaExcluir = document.getElementById('list_created'); // Obtém o elemento lista_created
+        listaParaExcluir.remove();
+        
+        var listaSalvaIndex = -1; // Inicialize o índice da lista a ser removida como -1
+
+        // Percorra as listas salvas no armazenamento local e encontre a correspondente à lista que está sendo fechada
+        var listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+        listasSalvas.forEach(function(lista, index) {
+            if (lista === listaParaExcluir.innerHTML) {
+                listaSalvaIndex = index; // Encontrou a lista, armazena o índice
+            }
+        });
+    
+        // Remove a lista do armazenamento local usando o índice encontrado
+        if (listaSalvaIndex !== -1) {
+            listasSalvas.splice(listaSalvaIndex, 1); // Remove a lista do array
+            localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas)); // Atualiza o armazenamento local
+        }      
+    
+    var msgInicial = document.getElementById('msg_inicial');
+        msgInicial.style.display = 'block';
+    });
