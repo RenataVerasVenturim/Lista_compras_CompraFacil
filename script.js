@@ -338,6 +338,19 @@ function carregarListaSelecionada(index) {
     };
 }
 
+
+function atribuirEventoExcluir() {
+    var botoesExcluir = document.querySelectorAll('.botao-excluir');
+
+    botoesExcluir.forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            var liItem = this.parentElement;
+            liItem.remove();
+            calcularTotal();
+        });
+    });
+}
+
 function exibirListasSalvas() {
 
     const listaDropdown = document.getElementById("listas-salvas");
