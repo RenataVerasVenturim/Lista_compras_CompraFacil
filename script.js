@@ -21,14 +21,16 @@ var modal_corpo = document.getElementById('corpo');
 var add = document.getElementById('add');
 var nome_lista = document.getElementById('nome_lista');
 var btn_menu = document.getElementById("btn-menu");
-
+var list_created=document.getElementById('list_created');
+var msg_inicial=document.getElementById('msg_inicial');
 
 window.addEventListener('click', function(event) {
-    if (/*event.target !== lista_suspensa && */event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista) {
-        /*lista_suspensa.style.display = "none";*/
+    if (event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista && event.target !== list_created) {
+
         modal_corpo.style.display = 'none';
         nome_lista.style.display='none';
-      
+        list_created.style.display='none';
+
         var lista = document.getElementById('f_lista');
         if (lista.children.length === 0) {
             document.getElementById('list_created').style.display = 'none';
@@ -38,6 +40,7 @@ window.addEventListener('click', function(event) {
         }
     }
 });
+
 
 var inputs = document.querySelectorAll('#corpo input');
 inputs.forEach(function(input) {
@@ -213,19 +216,6 @@ document.getElementById('fechar-lista-nome').addEventListener('click', function(
     checkListaVazia();
 });
 
-document.getElementById('fechar-list_created').addEventListener('click', function() {
-console.log('Botão de fechamento clicado')
-document.getElementById('list_created').style.display = 'none';
-console.log('Minimizado!')
-
-    /*var lista = document.getElementById('f_lista');
-    if (lista.children.length === 0) {
-        checkListaVazia();
-    } else {
-        document.getElementById('list_created').style.display = 'block';
-    }*/
-    checkListaVazia();
-});
 
 function checkListaVazia() {
     var lista = document.getElementById('f_lista');
@@ -233,13 +223,13 @@ function checkListaVazia() {
 
     if (lista.children.length === 0) {
         msgInicial.style.display = 'block';
+        document.getElementById('nome_lista').style.display='none';
+        document.getElementById('corpo').style.display='none';
+        document.getElementById('list_created').style.display='none';
         return true;
     } else {
         msgInicial.style.display = 'none';
-        document.getElementById('corpo').addEventListener('click', function() {
-            document.getElementById('corpo').style.display = 'block';
-        });
-        return false;
+
     }
 }
 
@@ -334,6 +324,19 @@ document.getElementById('link-sobre_app').addEventListener('click', function() {
 document.getElementById('fechar-sobre_app').addEventListener('click', function() {
     document.getElementById('sobre_app-modal').style.display = 'none';
 });
+
+document.getElementById('fechar-list_created').addEventListener('click', function() {
+
+    location.reload();
+    
+        /*var lista = document.getElementById('f_lista');
+        if (lista.children.length === 0) {
+            checkListaVazia();
+        } else {
+            document.getElementById('list_created').style.display = 'block';
+        }
+        checkListaVazia();*/
+    });
 //criar salvamento da lista
 // Função para exibir as listas salvas quando o link "LISTAS" for clicado
 // Array global para armazenar listas salvas
@@ -343,15 +346,15 @@ let listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
 function carregarListaSelecionada(index) {
     const listaSelecionada = listasSalvas[index];
     if (listaSelecionada) {
-        document.getElementById("list_created").innerHTML = listaSelecionada;
+        document.getElementById("list_created").innerHTML = listaSelecionada.conteudo;
+        document.querySelector("#list_created h1").textContent = listaSelecionada.titulo; // Atualize o h1 com o título correto
         document.getElementById("listas-salvas").style.display = "none";
-        document.querySelector("#list_created h1").textContent = `Lista ${index + 1}`;
-        calcularTotal(); 
-        /*checkListaVazia();*/
-        atribuirEventoExcluir()
+        calcularTotal();
+        atribuirEventoExcluir();
         adicionarFuncionalidadeAItensCarregados();
-    };
+    }
 }
+
 
 
 function atribuirEventoExcluir() {
@@ -367,7 +370,6 @@ function atribuirEventoExcluir() {
 }
 
 function exibirListasSalvas() {
-
     const listaDropdown = document.getElementById("listas-salvas");
 
     listaDropdown.innerHTML = ""; // Limpar itens anteriores
@@ -377,7 +379,7 @@ function exibirListasSalvas() {
         const link = document.createElement("a");
         link.href = "#";
         link.classList.add("minhas_listas_salvas");
-        link.textContent = `Lista ${index + 1}`;
+        link.textContent = lista.titulo; // Usar o título da lista
         link.addEventListener("click", () => {
             carregarListaSelecionada(index); // Carregar a lista selecionada
             msgInicial.style.display = 'none'; // Esconder msgInicial ao clicar na lista
@@ -385,6 +387,7 @@ function exibirListasSalvas() {
         listItem.appendChild(link);
         listaDropdown.appendChild(listItem);
     });
+
 
     var msgInicial = document.getElementById('msg_inicial');
 
@@ -396,19 +399,24 @@ document.getElementById("minhas_listas").addEventListener("click", exibirListasS
 
 // Função para salvar a lista no localStorage
 function salvarLista() {
-    const listaAtual = document.getElementById("list_created").innerHTML;
-    
-    if (listaAtual) {
+    const tituloLista = document.querySelector("#list_created h1").textContent; // Obtenha o texto do h1
+
+    if (tituloLista) {
         const listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
-        listasSalvas.push(listaAtual);
+        listasSalvas.push({ titulo: tituloLista, conteudo: document.getElementById("list_created").innerHTML });
         localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas));
         alert("Lista salva com sucesso!");
-        
+
         // Após salvar a lista, atualize as listas exibidas
         exibirListasSalvas();
-      
+
         // Verifique o estado do localStorage após o salvamento
         console.log(localStorage.getItem("minhas_listas"));
+
+        event.stopPropagation();
+
+        location.reload();
+
     } else {
         alert("A lista está vazia. Adicione itens antes de salvar.");
     }
@@ -430,10 +438,12 @@ var listas_salvas = document.getElementById('listas-salvas');
 todaslistas.addEventListener('click', function(){
     if(listas_salvas.style.display === "none" || listas_salvas.style.display === "" ){
         listas_salvas.style.display = "block";
+        
     }else{
         listas_salvas.style.display="none";
     }
 })
+
 // Função para adicionar funcionalidade aos itens carregados do armazenamento
 function adicionarFuncionalidadeAItensCarregados() {
     // Selecione todos os itens carregados do armazenamento
@@ -481,17 +491,18 @@ function adicionarFuncionalidadeAItensCarregados() {
 
     // Limpe o armazenamento local (localStorage)
     localStorage.setItem("minhas_listas", JSON.stringify([]));*/
-
     document.getElementById('excluir-list_created').addEventListener('click', function() {
         var listaParaExcluir = document.getElementById('list_created'); // Obtém o elemento lista_created
-        listaParaExcluir.remove();
-        
+    
         var listaSalvaIndex = -1; // Inicialize o índice da lista a ser removida como -1
-
-        // Percorra as listas salvas no armazenamento local e encontre a correspondente à lista que está sendo fechada
+    
+        // Obtém o título da lista atual
+        var tituloListaAtual = document.querySelector("#list_created h1").textContent;
+    
+        // Percorre as listas salvas no armazenamento local e encontre a correspondente à lista que está sendo fechada
         var listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
         listasSalvas.forEach(function(lista, index) {
-            if (lista === listaParaExcluir.innerHTML) {
+            if (lista.titulo === tituloListaAtual) {
                 listaSalvaIndex = index; // Encontrou a lista, armazena o índice
             }
         });
@@ -500,8 +511,12 @@ function adicionarFuncionalidadeAItensCarregados() {
         if (listaSalvaIndex !== -1) {
             listasSalvas.splice(listaSalvaIndex, 1); // Remove a lista do array
             localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas)); // Atualiza o armazenamento local
-        }      
+        }
     
-    var msgInicial = document.getElementById('msg_inicial');
+        // Remove a lista do DOM
+        listaParaExcluir.remove();
+    
+        var msgInicial = document.getElementById('msg_inicial');
         msgInicial.style.display = 'block';
     });
+    
