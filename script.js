@@ -329,20 +329,136 @@ document.getElementById('fechar-list_created').addEventListener('click', functio
 
     location.reload();
     
-        /*var lista = document.getElementById('f_lista');
-        if (lista.children.length === 0) {
-            checkListaVazia();
-        } else {
-            document.getElementById('list_created').style.display = 'block';
-        }
-        checkListaVazia();*/
     });
 //criar salvamento da lista
-// Função para exibir as listas salvas quando o link "LISTAS" for clicado
-// Array global para armazenar listas salvas
 let listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+function adicionarBotoesAoConteudoSalvo() {
+    // Botão "Salvar Alterações"
+    const botaoSalvarAlteracoesExistente = document.getElementById("salvar-alteracoes");
+    
+    if (!botaoSalvarAlteracoesExistente) {
+        // Código para criar e adicionar o botão "Salvar Alterações"
+        const botaoSalvarAlteracoes = document.createElement("button");
+        botaoSalvarAlteracoes.id = "salvar-alteracoes"; // ID do botão "Salvar Alterações"
+        botaoSalvarAlteracoes.classList.add("btn");
+        botaoSalvarAlteracoes.textContent = "Salvar Alterações";
 
-// Função para carregar e exibir a lista selecionada
+        // Atribuir evento de clique ao botão "Salvar Alterações"
+        botaoSalvarAlteracoes.addEventListener("click", function() {
+            // Obtém o conteúdo atual da lista que está aberta
+            var novoConteudoLista = document.getElementById("list_created").innerHTML;
+
+            // Obtém o título da lista atual
+            var tituloListaAtual = document.querySelector("#list_created h1").textContent;
+
+            // Percorre as listas salvas no armazenamento local e encontra a correspondente à lista que está sendo editada
+            var listaSalvaIndex = -1;
+            listasSalvas.forEach(function(lista, index) {
+                if (lista.titulo === tituloListaAtual) {
+                    listaSalvaIndex = index;
+                }
+            });
+
+            // Atualiza o conteúdo da lista salva correspondente
+            if (listaSalvaIndex !== -1) {
+                listasSalvas[listaSalvaIndex].conteudo = novoConteudoLista;
+                localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas)); // Atualiza o armazenamento local
+                alert("Alterações foram salvas com sucesso!"); // Mensagem de sucesso (opcional)
+            } else {
+                alert("Lista não encontrada. As alterações não puderam ser salvas.");
+            }
+
+            location.reload();
+        });
+
+        // Adicione o botão "Salvar Alterações" ao conteúdo salvo
+        const listaCriada = document.getElementById("list_created");
+        listaCriada.appendChild(botaoSalvarAlteracoes);
+    } else {
+        // Se o botão "Salvar Alterações" existir, exclua-o e crie um novo
+        botaoSalvarAlteracoesExistente.remove();
+
+        const botaoSalvarAlteracoes = document.createElement("button");
+        botaoSalvarAlteracoes.id = "salvar-alteracoes"; // ID do botão "Salvar Alterações"
+        botaoSalvarAlteracoes.classList.add("btn");
+        botaoSalvarAlteracoes.textContent = "Salvar Alterações";
+
+        // Atribuir evento de clique ao botão "Salvar Alterações"
+        botaoSalvarAlteracoes.addEventListener("click", function() {
+            // Obtém o conteúdo atual da lista que está aberta
+            var novoConteudoLista = document.getElementById("list_created").innerHTML;
+
+            // Obtém o título da lista atual
+            var tituloListaAtual = document.querySelector("#list_created h1").textContent;
+
+            // Percorre as listas salvas no armazenamento local e encontra a correspondente à lista que está sendo editada
+            var listaSalvaIndex = -1;
+            listasSalvas.forEach(function(lista, index) {
+                if (lista.titulo === tituloListaAtual) {
+                    listaSalvaIndex = index;
+                }
+            });
+
+            // Atualiza o conteúdo da lista salva correspondente
+            if (listaSalvaIndex !== -1) {
+                listasSalvas[listaSalvaIndex].conteudo = novoConteudoLista;
+                localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas)); // Atualiza o armazenamento local
+                alert("Alterações foram salvas com sucesso!"); // Mensagem de sucesso (opcional)
+            } else {
+                alert("Lista não encontrada. As alterações não puderam ser salvas.");
+            }
+
+            location.reload();
+        });
+
+        // Adicione o novo botão "Salvar Alterações" ao conteúdo salvo
+        const listaCriada = document.getElementById("list_created");
+        listaCriada.appendChild(botaoSalvarAlteracoes);
+    }
+    
+    // Botão "Excluir Lista Atual"
+    const botaoExcluirListaAtualExistente = document.getElementById("excluir-list-created");
+    
+    if (botaoExcluirListaAtualExistente) {
+        // Se o botão existir, remova-o
+        botaoExcluirListaAtualExistente.remove();
+    }
+    
+    // Código para criar e adicionar o botão "Excluir Lista Atual"
+    const botaoExcluirListaAtual = document.createElement("button");
+    botaoExcluirListaAtual.id = "excluir-list-created"; // ID do botão de exclusão
+    botaoExcluirListaAtual.classList.add("btn");
+    botaoExcluirListaAtual.textContent = "Excluir Lista Atual";
+
+    // Atribuir evento de clique ao botão "Excluir Lista Atual"
+    botaoExcluirListaAtual.addEventListener("click", function() {
+        // Obtém o título da lista atual
+        var tituloListaAtual = document.querySelector("#list_created h1").textContent;
+
+        // Remove a lista atual do localStorage
+        var listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
+        var novaListaSalvas = listasSalvas.filter(function(lista) {
+            return lista.titulo !== tituloListaAtual;
+        });
+        localStorage.setItem("minhas_listas", JSON.stringify(novaListaSalvas));
+
+        // Remove a lista atual do DOM
+        var listaParaExcluir = document.getElementById('list_created');
+        listaParaExcluir.remove();
+
+        // Exiba uma mensagem ou realize outras ações após excluir a lista atual
+        alert("A lista atual foi excluída.");
+
+        location.reload();
+    });
+
+    // Adicione o botão "Excluir Lista Atual" ao conteúdo salvo
+    const listaCriada = document.getElementById("list_created");
+    listaCriada.appendChild(botaoExcluirListaAtual);
+}
+
+
+// Modifique a função carregarListaSelecionada para adicionar os botões ao conteúdo salvo
 function carregarListaSelecionada(index) {
     const listaSelecionada = listasSalvas[index];
     if (listaSelecionada) {
@@ -350,12 +466,16 @@ function carregarListaSelecionada(index) {
         document.querySelector("#list_created h1").textContent = listaSelecionada.titulo; // Atualize o h1 com o título correto
         document.getElementById("listas-salvas").style.display = "none";
         calcularTotal();
+
+        // Adicione os botões "Excluir lista" e "Salvar alterações" ao conteúdo salvo
+        adicionarBotoesAoConteudoSalvo();
+
+        // Atribua eventos ao botão excluir
         atribuirEventoExcluir();
+        // Adicione funcionalidade aos itens carregados
         adicionarFuncionalidadeAItensCarregados();
     }
 }
-
-
 
 function atribuirEventoExcluir() {
     var botoesExcluir = document.querySelectorAll('.botao-excluir');
@@ -371,6 +491,8 @@ function atribuirEventoExcluir() {
 
 function exibirListasSalvas() {
     const listaDropdown = document.getElementById("listas-salvas");
+    
+    var msgInicial = document.getElementById('msg_inicial');
 
     listaDropdown.innerHTML = ""; // Limpar itens anteriores
 
@@ -387,10 +509,6 @@ function exibirListasSalvas() {
         listItem.appendChild(link);
         listaDropdown.appendChild(listItem);
     });
-
-
-    var msgInicial = document.getElementById('msg_inicial');
-
 }
 
 
@@ -410,9 +528,6 @@ function salvarLista() {
         // Após salvar a lista, atualize as listas exibidas
         exibirListasSalvas();
 
-        // Verifique o estado do localStorage após o salvamento
-        console.log(localStorage.getItem("minhas_listas"));
-
         event.stopPropagation();
 
         location.reload();
@@ -430,8 +545,15 @@ function carregarListas() {
 // Chame a função para carregar listas quando a página for carregada
 carregarListas();
 
+
 // Adicione um evento de clique para o botão "Salvar Lista"
-document.getElementById("salvar-lista").addEventListener("click", salvarLista);
+document.getElementById("salvar-lista").addEventListener("click", function() {
+
+    // Após salvar a lista, oculta o botão "Salvar Lista"
+    this.style.display = "none";
+    salvarLista();
+});
+
 var todaslistas = document.getElementById('minhas_listas');
 var listas_salvas = document.getElementById('listas-salvas');
 
@@ -477,12 +599,16 @@ function adicionarFuncionalidadeAItensCarregados() {
                 calcularTotal();
             }
         });
-        
-        });
-    }
 
-/*limpar excluindo todas as listas */
-/*   var listaSuspensa = document.getElementById('listas-salvas');
+        // Adicione a função location.reload() quando necessário
+        var fecharListaCreatedButton = document.getElementById('fechar-list_created');
+        fecharListaCreatedButton.addEventListener('click', function() {
+            location.reload();
+        });
+    });
+}
+/*limpar excluindo todas as listas------------------------------------------- */
+   /*var listaSuspensa = document.getElementById('listas-salvas');
     listaSuspensa.innerHTML = '';
     localStorage.setItem("minhas_listas", JSON.stringify([]));
     // Limpe a lista suspensa no DOM
@@ -491,32 +617,7 @@ function adicionarFuncionalidadeAItensCarregados() {
 
     // Limpe o armazenamento local (localStorage)
     localStorage.setItem("minhas_listas", JSON.stringify([]));*/
-    document.getElementById('excluir-list_created').addEventListener('click', function() {
-        var listaParaExcluir = document.getElementById('list_created'); // Obtém o elemento lista_created
-    
-        var listaSalvaIndex = -1; // Inicialize o índice da lista a ser removida como -1
-    
-        // Obtém o título da lista atual
-        var tituloListaAtual = document.querySelector("#list_created h1").textContent;
-    
-        // Percorre as listas salvas no armazenamento local e encontre a correspondente à lista que está sendo fechada
-        var listasSalvas = JSON.parse(localStorage.getItem("minhas_listas")) || [];
-        listasSalvas.forEach(function(lista, index) {
-            if (lista.titulo === tituloListaAtual) {
-                listaSalvaIndex = index; // Encontrou a lista, armazena o índice
-            }
-        });
-    
-        // Remove a lista do armazenamento local usando o índice encontrado
-        if (listaSalvaIndex !== -1) {
-            listasSalvas.splice(listaSalvaIndex, 1); // Remove a lista do array
-            localStorage.setItem("minhas_listas", JSON.stringify(listasSalvas)); // Atualiza o armazenamento local
-        }
-    
-        // Remove a lista do DOM
-        listaParaExcluir.remove();
-    
-        var msgInicial = document.getElementById('msg_inicial');
-        msgInicial.style.display = 'block';
-    });
+
+//-------------------------------------------------------------------------------
+
     
