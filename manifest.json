@@ -499,9 +499,9 @@
    
   "shortcuts": [
     {
-      "name": "[]",
+      "name": "[CompraFácil]",
       "url": "",
-      "description": ""
+      "description": "This is a shortcut to my app"
     }
   ],
   "id": "CompraFácil",

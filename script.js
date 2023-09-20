@@ -228,27 +228,6 @@ document.getElementById("fechar-lista-nome").addEventListener("click", function(
     checkListaVazia();
 });
 
-// Função para posicionar o botão "add-button" na parte inferior direita
-function reposicionarBotao() {
-    var addButton = document.getElementById("add-button");
-    var windowHeight = window.innerHeight;
-    var windowWidth = window.innerWidth;
-
-    var buttonWidth = addButton.offsetWidth;
-    var buttonHeight = addButton.offsetHeight;
-
-    var margin = 20; // Espaço mínimo a partir das bordas da janela
-
-    addButton.style.bottom = margin + "px";
-    addButton.style.right = margin + "px";
-}
-
-// Chame a função inicialmente para posicionar o botão
-reposicionarBotao();
-
-// Adicione um ouvinte de evento para ajustar a posição quando a janela for redimensionada
-window.addEventListener("resize", reposicionarBotao);
-
 function checkListaVazia() {
     var lista = document.getElementById("f_lista");
     var msgInicial = document.getElementById("msg_inicial");
