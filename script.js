@@ -557,8 +557,7 @@ carregarListas();
 // Adicione um evento de clique para o botão "Salvar Lista"
 document.getElementById("salvar-lista").addEventListener("click", function() {
     // Após salvar a lista, oculta o botão "Salvar Lista"
-    this.style.display = "none";
-    document.getElementById("add-button").style.display="block";
+    this.style.visibility = "hidden";
     salvarLista();
 });
 
