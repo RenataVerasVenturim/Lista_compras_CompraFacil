@@ -558,6 +558,7 @@ carregarListas();
 document.getElementById("salvar-lista").addEventListener("click", function() {
     // Após salvar a lista, oculta o botão "Salvar Lista"
     this.style.display = "none";
+    document.getElementById("add-button").style.display="block";
     salvarLista();
 });
 
