@@ -3,7 +3,6 @@
 
 /*Declaração das variáveis */
 var modal_corpo = document.getElementById("corpo");
-var add = document.getElementById("add");
 var nome_lista = document.getElementById("nome_lista");
 var btn_menu = document.getElementById("btn-menu");
 var list_created = document.getElementById("list_created");
@@ -65,12 +64,8 @@ function atualizarValorItem() {
 
     valorItemInputs.forEach(function (input) {
         input.addEventListener("input", function () {
-            console.log('Evento de alteração realizado no valor_item');
             const novoValor = this.value;
-            console.log('Pegou o valor inserido pelo usuário');
-            // Atualize o atributo "value" do próprio input com o novo valor inserido pelo usuário
             this.setAttribute("value", novoValor);
-            console.log('Atribuiu o valor');
         });
     });
 }
@@ -232,6 +227,27 @@ document.getElementById("fechar-lista-nome").addEventListener("click", function(
     document.getElementById("input_nome").value = "";
     checkListaVazia();
 });
+
+// Função para posicionar o botão "add-button" na parte inferior direita
+function reposicionarBotao() {
+    var addButton = document.getElementById("add-button");
+    var windowHeight = window.innerHeight;
+    var windowWidth = window.innerWidth;
+
+    var buttonWidth = addButton.offsetWidth;
+    var buttonHeight = addButton.offsetHeight;
+
+    var margin = 20; // Espaço mínimo a partir das bordas da janela
+
+    addButton.style.bottom = margin + "px";
+    addButton.style.right = margin + "px";
+}
+
+// Chame a função inicialmente para posicionar o botão
+reposicionarBotao();
+
+// Adicione um ouvinte de evento para ajustar a posição quando a janela for redimensionada
+window.addEventListener("resize", reposicionarBotao);
 
 function checkListaVazia() {
     var lista = document.getElementById("f_lista");
@@ -557,7 +573,7 @@ carregarListas();
 // Adicione um evento de clique para o botão "Salvar Lista"
 document.getElementById("salvar-lista").addEventListener("click", function() {
     // Após salvar a lista, oculta o botão "Salvar Lista"
-    this.style.visibility = "hidden";
+    this.style.display = "none";
     salvarLista();
 });
 
