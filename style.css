@@ -328,10 +328,56 @@ ol {
     padding:0px;
     font-size:70%;
 }
-
+#produto1{
+    background-color: lightblue ;
+    padding-top:10px;
+}
+#produto2{
+    background-color:rgb(56, 75, 81) ;
+    padding-top:10px;
+}
+#produto1_titulo{
+    margin-top:0px;
+    margin-bottom: 5px;
+}
+#produto2_titulo{
+    color:white;
+    margin-top:0px;
+    margin-bottom: 5px;
+}
 #add-button{
     cursor:pointer;
     position: fixed;
     bottom: 20px;
     right: 20px;
+}
+.info-icon {
+    cursor: pointer;
+    color: blue;
+    margin-left: 5px;
+}
+.info-icon svg{
+    
+    height:20px;
+    width:20px;
+}
+
+.info-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+}
+
+.info-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
 }

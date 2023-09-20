@@ -277,6 +277,12 @@ btnNome.addEventListener("click", function() {
     }
 });
 
+document.getElementById("info-calculadora").addEventListener("click", function() {
+    var tooltip = document.getElementById("tooltip-calculadora");
+    tooltip.style.display = (tooltip.style.display === "block") ? "none" : "block";
+});
+
+
 document.getElementById("link-calculadora").addEventListener("click", function() {
     document.getElementById("calculadora-modal").style.display = "block";
 });
@@ -322,11 +328,11 @@ document.getElementById("calcular").addEventListener("click", function() {
         var precoPorUnidade2 = valor2 / quantidade2;
 
         if (precoPorUnidade1 < precoPorUnidade2) {
-            document.getElementById("resultado").textContent = "A opção 1 é a mais econômica";
+            document.getElementById("resultado").textContent = "O produto 1 é o mais econômico";
         } else if (precoPorUnidade1 > precoPorUnidade2) {
-            document.getElementById("resultado").textContent = "A opção 2 é a mais econômica.";
+            document.getElementById("resultado").textContent = "O produto 2 é o mais econômico.";
         } else {
-            document.getElementById("resultado").textContent = "As opções têm o mesmo preço por unidade.";
+            document.getElementById("resultado").textContent = "As opções têm o mesmo preço por quantidade.";
         }
     }
 });
@@ -470,7 +476,7 @@ function adicionarBotoesAoConteudoSalvo() {
     listaCriada.appendChild(botaoExcluirListaAtual);
 }
 
-// Modifique a função carregarListaSelecionada para adicionar os botões ao conteúdo salvo
+// carregar lista selecionada
 function carregarListaSelecionada(index) {
     const listaSelecionada = listasSalvas[index];
     if (listaSelecionada) {
@@ -486,6 +492,7 @@ function carregarListaSelecionada(index) {
         atribuirEventoExcluir();
         // Adicione funcionalidade aos itens carregados
         adicionarFuncionalidadeAItensCarregados();
+        calcularTotal()
     }
 }
 function atribuirEventoExcluir() {
