@@ -66,6 +66,8 @@ function atualizarValorItem() {
         input.addEventListener("input", function () {
             const novoValor = this.value;
             this.setAttribute("value", novoValor);
+            
+    calcularTotal();
         });
     });
 }
@@ -186,7 +188,11 @@ function calcularTotal() {
     var checkboxes = document.querySelectorAll(".li_checkbox");
     checkboxes.forEach(function(checkbox) {
         var item = checkbox.closest(".item");
-        var valorItem = parseFloat(item.querySelector(".valor_item").value);
+        var valorItemText = item.querySelector(".valor_item").value;
+        
+        // Substitua as vírgulas por pontos
+        var valorItem = parseFloat(valorItemText.replace(",", "."));
+
         var unidadesText = item.querySelector(".unidades").textContent;
         var qnt = parseFloat(unidadesText);
 
@@ -196,6 +202,7 @@ function calcularTotal() {
             }
         }
     });
+
 
     var totalCompras = document.getElementById("total_compras");
     totalCompras.textContent = "TOTAL: R$ " + total.toFixed(2);
