@@ -60,6 +60,21 @@ a.addEventListener("click", inserir);
 /* OBJETIVO: INSERIR ELEMENTO DOM */
 /* Entrada de dados */
 // Invalidar campo vazio
+function atualizarValorItem() {
+    const valorItemInputs = document.querySelectorAll(".valor_item");
+
+    valorItemInputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+            console.log('Evento de alteração realizado no valor_item');
+            const novoValor = this.value;
+            console.log('Pegou o valor inserido pelo usuário');
+            // Atualize o atributo "value" do próprio input com o novo valor inserido pelo usuário
+            this.setAttribute("value", novoValor);
+            console.log('Atribuiu o valor');
+        });
+    });
+}
+    
 function inserir() {
     var texto1 = document.getElementById("item_usuario1").value;
     var texto3 = document.getElementById("item_usuario3").value;
@@ -70,15 +85,18 @@ function inserir() {
 
         var item = document.createElement("li");
         var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        var valor_item = document.createElement("input");
-        valor_item.type = "number";
-        valor_item.placeholder = "R$";
         var unidades = document.createElement("span");
+        var valor_item = document.createElement("input");
+
+        valor_item.type = "text";
+        valor_item.setAttribute("value", "");
+        valor_item.placeholder = "R$";
+        valor_item.className = "valor_item";
 
         item.className = "item";
+
+        checkbox.type = "checkbox";
         checkbox.className = "li_checkbox";
-        valor_item.className = "valor_item";
         unidades.className = "unidades";
 
         unidades.appendChild(document.createTextNode(texto1));
@@ -86,6 +104,7 @@ function inserir() {
         item.appendChild(unidades);
         item.appendChild(document.createTextNode(" " + texto3));
         item.appendChild(valor_item);
+
         adicionarBotaoExcluir(item);
         document.getElementById("list_created").style.display = "block";
 
@@ -122,7 +141,9 @@ function inserir() {
                 lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
             }
             calcularTotal();
+            
         });
+
 
         var lista_tarefas = document.getElementById("f_lista");
         lista_tarefas.appendChild(item);
@@ -138,7 +159,9 @@ function inserir() {
     } else {
         window.alert("Inserir dados do item!");
     }
-    checkListaVazia();
+    checkListaVazia(); 
+    
+    atualizarValorItem()    
 }
 
 /* OBJETIVO: Quando clicar Enter, inserir item */
@@ -494,7 +517,9 @@ function exibirListasSalvas() {
         });
         listItem.appendChild(link);
         listaDropdown.appendChild(listItem);
+        
     });
+    calcularTotal()
 }
 
 // Adicione um evento de clique para o link "LISTAS"
@@ -580,13 +605,15 @@ function adicionarFuncionalidadeAItensCarregados() {
                 calcularTotal();
             }
         });
-
+        
         // Adicione a função location.reload() quando necessário
         var fecharListaCreatedButton = document.getElementById("fechar-list_created");
         fecharListaCreatedButton.addEventListener("click", function() {
             location.reload();
         });
     });
+    
+    atualizarValorItem() 
 }
 
 /*limpar excluindo todas as listas------------------------------------------- */
@@ -602,4 +629,24 @@ function adicionarFuncionalidadeAItensCarregados() {
 
 //-------------------------------------------------------------------------------
 })
-    
+
+if ('caches' in window) {
+    caches.open('pwabuilder-page').then(function(cache) {
+      cache.match('style.css').then(function(response) {
+        if (response) {
+          console.log('style.css encontrado no cache:', response);
+        } else {
+          console.log('style.css não encontrado no cache.');
+        }
+      });
+  
+      cache.match('script.js').then(function(response) {
+        if (response) {
+          console.log('script.js encontrado no cache:', response);
+        } else {
+          console.log('script.js não encontrado no cache.');
+        }
+      });
+    });
+  }
+  
