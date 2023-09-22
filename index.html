@@ -105,16 +105,28 @@
             <span class="close" id="fechar-corpo">×</span>
             <span>
                 <label for="item_usuario1">QNT</label>
-                <br><input type="number" id="item_usuario1" placeholder="1,.." required>
+                <br><input type="number" id="item_usuario1" placeholder="1,.." required class="qtd">
             </span>
             <span>
                 <label for="item_usuario3">ITEM</label>
                 <br><input type="text" id="item_usuario3" name="item_usuario" placeholder="Arroz, feijão...">
             </span>
             <br>
-            <input type="button" class="f_botao" value="INSERIR">
+            <input type="button" id="f_botao" value="INSERIR">
         </div>
-
+        <div id="corpo_alterar" class="modal-content" style="display: none;">
+            <span class="close" id="fechar-corpo-alterar"></span>
+            <span>
+                <label for="item_usuario4">QNT</label>
+                <br><input type="number" id="item_usuario4" placeholder="1,.." required>
+            </span>
+            <span>
+                <label for="item_usuario5">ITEM</label>
+                <br><input type="text" id="item_usuario5" name="item_usuario" placeholder="Arroz, feijão...">
+            </span>
+            <br>
+            <input type="button" id="f_botao_alterar" value="EDITAR">
+        </div>
         
         <div id="list_created" style="display: none;">
             <span class="close" id="fechar-list_created">&times;</span>

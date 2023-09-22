@@ -50,11 +50,11 @@ inputs.forEach(function(input) {
 
 /* PRIMEIRO BOTAO */
 /* Relacionar qual botão */
-a = document.getElementsByClassName("f_botao")[0];
+botao_inserir = document.getElementById('f_botao');
 
 /* Saída de dados */
 /* Adicionar evento aos botões */
-a.addEventListener("click", inserir);
+botao_inserir.addEventListener("click", inserir);
 
 /* OBJETIVO: INSERIR ELEMENTO DOM */
 /* Entrada de dados */
@@ -77,8 +77,8 @@ function inserir() {
     var texto3 = document.getElementById("item_usuario3").value;
 
     if (texto3 !== "" && texto1 !== "") {
-        a.style.background = "lightgray";
-        a.value = "INSERIDO";
+        botao_inserir.style.background = "lightgray";
+        botao_inserir.value = "INSERIDO";
 
         var item = document.createElement("li");
         var checkbox = document.createElement("input");
@@ -90,6 +90,7 @@ function inserir() {
         valor_item.placeholder = "R$";
         valor_item.className = "valor_item";
 
+
         item.className = "item";
 
         checkbox.type = "checkbox";
@@ -99,46 +100,59 @@ function inserir() {
         unidades.appendChild(document.createTextNode(texto1));
         item.appendChild(checkbox);
         item.appendChild(unidades);
-        item.appendChild(document.createTextNode(" " + texto3));
+
+
+        // Crie um span adicional para envolver o texto inserido pelo usuário
+        var textoInserido = document.createElement("span");
+        textoInserido.className = "texto-inserido"; // Adicione a classe desejada aqui
+
+        textoInserido.appendChild(document.createTextNode(" " + texto3));
+        item.appendChild(textoInserido);
         item.appendChild(valor_item);
 
-        adicionarBotaoExcluir(item);
-        document.getElementById("list_created").style.display = "block";
+    adicionarBotaoExcluir(item);
+    document.getElementById("list_created").style.display = "block";
 
-        function adicionarBotaoExcluir(liItem) {
-            
-            var lista = document.getElementById("f_lista");
+    function adicionarBotaoExcluir(liItem) {
+    var lista = document.getElementById("f_lista");
 
-            var botaoExcluir = document.createElement("span");
-            botaoExcluir.className = "botao-excluir";
-            botaoExcluir.textContent = "❌";
-            botaoExcluir.addEventListener("click", function() {
-                liItem.remove();
-                calcularTotal();
+    var botaoExcluir = document.createElement("span");
+    botaoExcluir.className = "botao-excluir";
+    botaoExcluir.textContent = "❌";
+    botaoExcluir.addEventListener("click", function() {
+        liItem.remove();
+        calcularTotal();
 
-                if (lista.children.length === 0) {
-                    document.getElementById("list_created").style.display = "none";
-                    checkListaVazia();
-                } else {
-                    document.getElementById("list_created").style.display = "block";
-                }
-            });
-            liItem.appendChild(botaoExcluir);
+        if (lista.children.length === 0) {
+            document.getElementById("list_created").style.display = "none";
+            checkListaVazia();
+        } else {
+            document.getElementById("list_created").style.display = "block";
         }
+    });
+    liItem.appendChild(botaoExcluir);
+    }
 
         checkbox.addEventListener("click", function() {
             var liItem = this.parentElement;
+            var textoInserido = liItem.querySelector(".texto-inserido"); // Encontra o elemento com a classe "texto-inserido"
+        
             if (this.checked) {
                 liItem.style.textDecoration = "line-through";
+                if (textoInserido) {
+                    textoInserido.style.textDecoration = "line-through"; // Aplica o estilo à classe "texto-inserido"
+                }
                 lista_tarefas.removeChild(liItem);
                 lista_tarefas.appendChild(liItem);
             } else {
                 liItem.style.textDecoration = "none";
+                if (textoInserido) {
+                    textoInserido.style.textDecoration = "none"; // Remove o estilo da classe "texto-inserido"
+                }
                 lista_tarefas.removeChild(liItem);
                 lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
             }
             calcularTotal();
-            
         });
 
 
@@ -149,16 +163,224 @@ function inserir() {
         document.getElementById("item_usuario1").value = "";
 
         setTimeout(function() {
-            a.style.background = "lightblue";
-            a.style.color = "black";
-            a.value = "INSERIR";
+            botao_inserir.style.background = "lightblue";
+            botao_inserir.style.color = "black";
+            botao_inserir.value = "INSERIR";
         }, 300);
+            
+/*---------EDITAR ITEM DA LISTA ----------------------------------------------*/
+        
+    // Adicione um ouvinte de evento de clique aos elementos da classe "texto-inserido" e "unidades"
+    var elementosTextoInserido = document.getElementsByClassName('texto-inserido');
+    var elementosUnidades = document.getElementsByClassName('unidades');
+    
+    for (var i = 0; i < elementosTextoInserido.length; i++) {
+        elementosTextoInserido[i].addEventListener('click', function() {
+            event.stopPropagation();
+    
+            var linhaClicada = this.closest('.item');
+    
+            // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
+            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
+            var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
+    
+            // Exiba a div de edição
+            document.getElementById("corpo_alterar").style.display = "block";
+    
+            // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
+            document.getElementById("item_usuario4").value =
+                valorUnidades;
+            document.getElementById("item_usuario5").value =
+                valorTextoInserido;
+    
+            linhaClicada.remove();
+        });
+    }
+    
+    for (var i = 0; i < elementosUnidades.length; i++) {
+        elementosUnidades[i].addEventListener('click', function() {
+            event.stopPropagation();
+    
+            // Localize o elemento pai (linha com classe "item")
+            var linhaClicada = this.closest('.item');
+    
+            // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
+            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
+            var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
+            // Exiba a div de edição
+            document.getElementById("corpo_alterar").style.display = "block";
+            // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
+    
+            document.getElementById("item_usuario4").value = valorUnidades;
+            document.getElementById("item_usuario5").value = valorTextoInserido;
+    
+            linhaClicada.remove();
+        });
+    }
+    
+    document.getElementById('f_botao_alterar').addEventListener('click', function() {
+        // Move a definição das variáveis para dentro do evento de clique do botão
+        var texto1 = document.getElementById("item_usuario4").value;
+        var texto3 = document.getElementById("item_usuario5").value;
+        
+        if (texto3 !== "" && texto1 !== "") {
+            botao_inserir.style.background = "lightgray";
+            botao_inserir.value = "INSERIDO";
+    
+            var item = document.createElement("li");
+            var checkbox = document.createElement("input");
+            var unidades = document.createElement("span");
+            var valor_item = document.createElement("input");
+    
+            valor_item.type = "text";
+            valor_item.setAttribute("value", "");
+            valor_item.placeholder = "R$";
+            valor_item.className = "valor_item";
+    
+            item.className = "item";
+    
+            checkbox.type = "checkbox";
+            checkbox.className = "li_checkbox";
+            unidades.className = "unidades";
+    
+            unidades.appendChild(document.createTextNode(texto1));
+            item.appendChild(checkbox);
+            item.appendChild(unidades);
+    
+            // Crie um span adicional para envolver o texto inserido pelo usuário
+            var textoInserido = document.createElement("span");
+            textoInserido.className = "texto-inserido"; // Adicione a classe desejada aqui
+    
+            textoInserido.appendChild(document.createTextNode(" " + texto3));
+            item.appendChild(textoInserido);
+            item.appendChild(valor_item);
+    
+            adicionarBotaoExcluir(item);
+            document.getElementById("list_created").style.display = "block";
+        }
+        
+        function adicionarBotaoExcluir(liItem) {
+            var lista = document.getElementById("f_lista");
+        
+            var botaoExcluir = document.createElement("span");
+            botaoExcluir.className = "botao-excluir";
+            botaoExcluir.textContent = "❌";
+            botaoExcluir.addEventListener("click", function() {
+                liItem.remove();
+                calcularTotal();
+        
+                if (lista.children.length === 0) {
+                    document.getElementById("list_created").style.display = "none";
+                    checkListaVazia();
+                } else {
+                    document.getElementById("list_created").style.display = "block";
+                }
+            });
+            liItem.appendChild(botaoExcluir);
+        }
+        
+        adicionarFuncionalidadeAItensCarregados()
+
+        var lista_tarefas = document.getElementById("f_lista");
+        lista_tarefas.appendChild(item);
+        
+        document.getElementById("item_usuario4").value = "";
+        document.getElementById("item_usuario5").value = "";
+        
+        document.getElementById("corpo_alterar").style.display="none";
+        
+        alert("Item editado com sucesso!");
+
+        var checkboxes = document.querySelectorAll(".li_checkbox");
+
+        checkbox.addEventListener("click", function() {
+            var liItem = this.parentElement;
+            var textoInserido = liItem.querySelector(".texto-inserido"); // Encontra o elemento com a classe "texto-inserido"
+        
+            if (this.checked) {
+                liItem.style.textDecoration = "line-through";
+                if (textoInserido) {
+                    textoInserido.style.textDecoration = "line-through"; // Aplica o estilo à classe "texto-inserido"
+                }
+                lista_tarefas.removeChild(liItem);
+                lista_tarefas.appendChild(liItem);
+            } else {
+                liItem.style.textDecoration = "none";
+                if (textoInserido) {
+                    textoInserido.style.textDecoration = "none"; 
+                }
+                lista_tarefas.removeChild(liItem);
+                lista_tarefas.appendChild(liItem);
+            }
+            }); 
+            
+        setTimeout(function() {
+            botao_inserir.style.background = "lightblue";
+            botao_inserir.style.color = "black";
+            botao_inserir.value = "EDITADO";
+        }, 300);
+
+    //-----------------------------------------------------------------
+
+        
+    var elementosTextoInserido = document.getElementsByClassName('texto-inserido');
+    var elementosUnidades = document.getElementsByClassName('unidades');
+    
+    for (var i = 0; i < elementosTextoInserido.length; i++) {
+        elementosTextoInserido[i].addEventListener('click', function() {
+            event.stopPropagation();
+    
+            var linhaClicada = this.closest('.item');
+    
+            // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
+            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
+            var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
+    
+            // Exiba a div de edição
+            document.getElementById("corpo_alterar").style.display = "block";
+    
+            // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
+            document.getElementById("item_usuario4").value =
+                valorUnidades;
+            document.getElementById("item_usuario5").value =
+                valorTextoInserido;
+    
+            linhaClicada.remove();
+        });
+    }
+    
+    for (var i = 0; i < elementosUnidades.length; i++) {
+        elementosUnidades[i].addEventListener('click', function() {
+            event.stopPropagation();
+    
+            // Localize o elemento pai (linha com classe "item")
+            var linhaClicada = this.closest('.item');
+    
+            // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
+            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
+            var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
+            // Exiba a div de edição
+            document.getElementById("corpo_alterar").style.display = "block";
+            // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
+    
+            document.getElementById("item_usuario4").value = valorUnidades;
+            document.getElementById("item_usuario5").value = valorTextoInserido;
+    
+            linhaClicada.remove();
+        });
+    }
+
+    });
+    
+//----------------------------------------------------------------
+
     } else {
         window.alert("Inserir dados do item!");
     }
     checkListaVazia(); 
     
     atualizarValorItem()    
+    
 }
 
 /* OBJETIVO: Quando clicar Enter, inserir item */
@@ -220,6 +442,7 @@ document.getElementById("add").addEventListener("click", function() {
 });
 
 document.getElementById("fechar-corpo").addEventListener("click", function() {
+    
     document.getElementById("corpo").style.display = "none";
     var lista = document.getElementById("f_lista");
     if (lista.children.length === 0) {
@@ -228,6 +451,14 @@ document.getElementById("fechar-corpo").addEventListener("click", function() {
         document.getElementById("list_created").style.display = "block";
     }
 });
+document.getElementById("fechar-corpo-alterar").addEventListener('click',function(){
+
+    event.stopPropagation();
+    document.getElementById("corpo_alterar").style.display = "none";
+    document.getElementById("item_usuario4").value="";
+    document.getElementById("item_usuario5").value="";
+}
+)
 
 document.getElementById("fechar-lista-nome").addEventListener("click", function() {
     document.getElementById("nome_lista").style.display = "none";
@@ -306,9 +537,7 @@ window.addEventListener("click", function(event) {
         document.getElementById("quantidade2").value = "";
         document.getElementById("resultado").textContent = "";
     }
-});
 
-window.addEventListener("click", function(event) {
     var modal = document.getElementById("sobre_app-modal");
     if (event.target === modal) {
         modal.style.display = "none";
