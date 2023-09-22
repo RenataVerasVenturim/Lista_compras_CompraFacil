@@ -162,15 +162,25 @@ function inserir() {
         document.getElementById("item_usuario3").value = "";
         document.getElementById("item_usuario1").value = "";
 
+    } else {
+        window.alert("Inserir dados do item!");
+    }
+    checkListaVazia(); 
+    
+    atualizarValorItem();    
+    
         setTimeout(function() {
             botao_inserir.style.background = "lightblue";
             botao_inserir.style.color = "black";
             botao_inserir.value = "INSERIR";
         }, 300);
-            
+
+    editar_item();
+    }
 /*---------EDITAR ITEM DA LISTA ----------------------------------------------*/
         
     // Adicione um ouvinte de evento de clique aos elementos da classe "texto-inserido" e "unidades"
+    function editar_item(){
     var elementosTextoInserido = document.getElementsByClassName('texto-inserido');
     var elementosUnidades = document.getElementsByClassName('unidades');
     
@@ -194,6 +204,7 @@ function inserir() {
                 valorTextoInserido;
     
             linhaClicada.remove();
+            AtribuirFunctionsApósAlterarItem()
         });
     }
     
@@ -215,9 +226,11 @@ function inserir() {
             document.getElementById("item_usuario5").value = valorTextoInserido;
     
             linhaClicada.remove();
+            AtribuirFunctionsApósAlterarItem()
         });
     }
-    
+    }
+    function AtribuirFunctionsApósAlterarItem(){
     document.getElementById('f_botao_alterar').addEventListener('click', function() {
         // Move a definição das variáveis para dentro do evento de clique do botão
         var texto1 = document.getElementById("item_usuario4").value;
@@ -317,9 +330,9 @@ function inserir() {
         setTimeout(function() {
             botao_inserir.style.background = "lightblue";
             botao_inserir.style.color = "black";
-            botao_inserir.value = "EDITADO";
+            botao_inserir.value = "INSERIR";
         }, 300);
-
+    
     //-----------------------------------------------------------------
 
         
@@ -371,16 +384,10 @@ function inserir() {
     }
 
     });
-    
+
 //----------------------------------------------------------------
 
-    } else {
-        window.alert("Inserir dados do item!");
-    }
-    checkListaVazia(); 
-    
-    atualizarValorItem()    
-    
+ 
 }
 
 /* OBJETIVO: Quando clicar Enter, inserir item */
@@ -722,6 +729,7 @@ function carregarListaSelecionada(index) {
         // Adicione funcionalidade aos itens carregados
         adicionarFuncionalidadeAItensCarregados();
         calcularTotal()
+        editar_item()
     }
 }
 function atribuirEventoExcluir() {
