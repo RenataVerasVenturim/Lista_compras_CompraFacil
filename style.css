@@ -256,6 +256,14 @@ main span {
     width: 120px;
     height: 35px;
 }
+#item_usuario4 {
+    width: 50px;
+    height: 35px;
+}
+#item_usuario5 {
+    width: 120px;
+    height: 35px;
+}
 
 p {
     text-align: right;
@@ -296,7 +304,15 @@ ol {
     padding: 8px 28px;
 }
 
-.f_botao {
+#f_botao {
+    background-color: lightblue;
+    color: black;
+    padding: 6px 26px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+#f_botao_alterar{
     background-color: lightblue;
     color: black;
     padding: 6px 26px;
