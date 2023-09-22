@@ -25,6 +25,7 @@ btn_menu.addEventListener("click", function() {
 window.addEventListener("click", function(event) {
     
     var lista = document.getElementById("f_lista");
+    
 
     if (event.target !== btn_menu && event.target !== modal_corpo && event.target !== add && event.target !== nome_lista && event.target !== list_created) {
 
@@ -326,7 +327,11 @@ function inserir() {
                 lista_tarefas.appendChild(liItem);
             }
             }); 
+        
             
+            document.getElementById("msg_inicial").style.display="none";
+            
+
         setTimeout(function() {
             botao_inserir.style.background = "lightblue";
             botao_inserir.style.color = "black";
