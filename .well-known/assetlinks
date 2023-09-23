@@ -1,10 +1,8 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "xyz.appmaker.wuthir",
-      "sha256_cert_fingerprints": ["59:88:37:4B:1D:21:10:36:95:E3:E3:7D:23:16:61:D4:69:F4:B4:8F:8A:0A:4E:F3:79:23:12:2D:FC:D9:97:80"]
-    }
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.github.renataverasventurim.twa2",
+    "sha256_cert_fingerprints": ["04:D2:60:98:0D:39:2D:35:DC:27:08:50:8C:3A:A9:62:C3:BF:F4:CA:22:BF:F6:5C:C2:4D:1A:D8:24:7C:EF:40"]
   }
-]
+}]
