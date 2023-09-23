@@ -1,8 +1,8 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "io.github.renataverasventurim.twa2",
-    "sha256_cert_fingerprints": ["04:D2:60:98:0D:39:2D:35:DC:27:08:50:8C:3A:A9:62:C3:BF:F4:CA:22:BF:F6:5C:C2:4D:1A:D8:24:7C:EF:40"]
-  }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.renataverasventurim.twa2",
+        "sha256_cert_fingerprints": ["73:34:25:04:CA:50:F2:C2:6F:BD:F3:77:4D:F8:CD:69:E7:BF:FF:C5:5C:68:A9:59:7E:93:84:09:93:E8:B9:9A"]
+      }
+    }]
