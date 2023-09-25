@@ -215,7 +215,7 @@ function inserir() {
             AtribuirFunctionsApósAlterarItem()
         });
     }
-    
+    /*
     for (var i = 0; i < elementosUnidades.length; i++) {
         elementosUnidades[i].addEventListener('click', function() {
             event.stopPropagation();
@@ -236,7 +236,7 @@ function inserir() {
             linhaClicada.remove();
             AtribuirFunctionsApósAlterarItem()
         });
-    }
+    }*/
     }
     function AtribuirFunctionsApósAlterarItem(){
     document.getElementById('f_botao_alterar').addEventListener('click', function() {
