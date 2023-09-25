@@ -841,28 +841,37 @@ function adicionarFuncionalidadeAItensCarregados() {
             calcularTotal();
         });
 
-        // Adicione funcionalidade para riscar e mover para o final da lista
-        checkbox.addEventListener("click", function() {
-            
-            var lista_tarefas = document.getElementById("f_lista");
-            var liItem = this.parentElement;
-            if (liItem) {
-                if (this.checked) {
-                    liItem.style.textDecoration = "line-through";
-                    if (lista_tarefas.contains(liItem)) {
-                        lista_tarefas.removeChild(liItem);
-                        lista_tarefas.appendChild(liItem);
-                    }
-                } else {
-                    liItem.style.textDecoration = "none";
-                    if (lista_tarefas.contains(liItem)) {
-                        lista_tarefas.removeChild(liItem);
-                        lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
-                    }
+        
+// Selecione todos os elementos .li_checkbox dentro de .item
+var checkboxes = document.querySelectorAll(".item .li_checkbox");
+
+// Itere sobre cada checkbox e atribua a função de clique
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener("click", function() {
+        var textoInserido = this.parentElement.querySelector(".texto-inserido");
+        var lista_tarefas = document.getElementById("f_lista");
+        var liItem = this.parentElement;
+        if (textoInserido && liItem) {
+            if (this.checked) {
+                textoInserido.style.textDecoration = "line-through";
+                if (lista_tarefas.contains(liItem)) {
+                    lista_tarefas.removeChild(liItem);
+                    lista_tarefas.appendChild(liItem);
                 }
-                calcularTotal();
+            } else {
+                textoInserido.style.textDecoration = "none";
+                if (lista_tarefas.contains(liItem)) {
+                    lista_tarefas.removeChild(liItem);
+                    lista_tarefas.insertBefore(liItem, lista_tarefas.firstChild);
+                }
             }
-        });
+            calcularTotal();
+        }
+    });
+});
+
+
+        
         
         // Adicione a função location.reload() quando necessário
         var fecharListaCreatedButton = document.getElementById("fechar-list_created");
