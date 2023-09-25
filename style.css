@@ -267,7 +267,7 @@ main span {
 
 p {
     text-align: right;
-    margin-right: 5px;
+    margin-right: 50px;
 }
 
 #f_lista {
@@ -281,11 +281,10 @@ p {
 
 .valor_item {
     position: absolute;
-    right: 40px;
+    right: 33px;
     width: 48px;
     height: 25px;
 }
-  
 
 ol {
     list-style-type: none;
@@ -311,6 +310,16 @@ ol {
     margin-top: 10px;
     margin-bottom: 10px;
     cursor: pointer;
+}
+.texto-inserido{ 
+    position: relative;
+    margin-right: 112px;
+}
+.botao-excluir{
+        position: absolute;
+        right: -28px;
+        width: 48px;
+        height: 25px;
 }
 #f_botao_alterar{
     background-color: lightblue;
