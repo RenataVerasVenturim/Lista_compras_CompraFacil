@@ -18,6 +18,13 @@ btn_menu.addEventListener("click", function() {
         lista_suspensa.style.display = "block";
     }
 });
+// adiconar função de criar lista ao clicar no ícone inicial
+document.getElementById("msg_inicial_icon").addEventListener("click",function(){
+    event.stopPropagation();
+    document.getElementById("nome_lista").style.display = "block";
+    document.getElementById("msg_inicial").style.display = "none";
+
+})
 
 //Fechar itens se o usuário clicar fora deles
 //var lista_suspensa = document.getElementById("lista_suspensa");
