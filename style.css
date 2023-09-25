@@ -269,6 +269,9 @@ p {
     text-align: right;
     margin-right: 22px;
 }
+ol{
+    padding-inline-start:15px;
+}
 
 #f_lista {
     text-align: left;
@@ -281,7 +284,7 @@ p {
 
 .valor_item {
     position: absolute;
-    right: 33px;
+    right: 40px;
     width: 48px;
     height: 25px;
 }
@@ -317,7 +320,7 @@ ol {
 }
 .botao-excluir{
         position: absolute;
-        right: -28px;
+        right: -20px;
         width: 48px;
         height: 25px;
 }
