@@ -146,14 +146,12 @@ function inserir() {
             var textoInserido = liItem.querySelector(".texto-inserido"); // Encontra o elemento com a classe "texto-inserido"
         
             if (this.checked) {
-                liItem.style.textDecoration = "line-through";
                 if (textoInserido) {
                     textoInserido.style.textDecoration = "line-through"; // Aplica o estilo à classe "texto-inserido"
                 }
                 lista_tarefas.removeChild(liItem);
                 lista_tarefas.appendChild(liItem);
             } else {
-                liItem.style.textDecoration = "none";
                 if (textoInserido) {
                     textoInserido.style.textDecoration = "none"; // Remove o estilo da classe "texto-inserido"
                 }
@@ -321,25 +319,25 @@ function inserir() {
 
         checkbox.addEventListener("click", function() {
             var liItem = this.parentElement;
-            var textoInserido = liItem.querySelector(".texto-inserido"); // Encontra o elemento com a classe "texto-inserido"
+            var textoInserido = liItem.querySelector(".texto-inserido");
         
             if (this.checked) {
-                liItem.style.textDecoration = "line-through";
                 if (textoInserido) {
-                    textoInserido.style.textDecoration = "line-through"; // Aplica o estilo à classe "texto-inserido"
+                    textoInserido.style.textDecoration = "line-through"; 
                 }
                 lista_tarefas.removeChild(liItem);
                 lista_tarefas.appendChild(liItem);
             } else {
-                liItem.style.textDecoration = "none";
                 if (textoInserido) {
                     textoInserido.style.textDecoration = "none"; 
                 }
                 lista_tarefas.removeChild(liItem);
                 lista_tarefas.appendChild(liItem);
             }
-            }); 
-        
+            
+        calcularTotal()
+            }
+            ); 
             
             document.getElementById("msg_inicial").style.display="none";
             
@@ -401,7 +399,6 @@ function inserir() {
             linhaClicada.remove();
         });
     }*/
-
     });
 
 //----------------------------------------------------------------
