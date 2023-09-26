@@ -190,8 +190,8 @@ function inserir() {
     // Adicione um ouvinte de evento de clique aos elementos da classe "texto-inserido" e "unidades"
     function editar_item(){
     var elementosTextoInserido = document.getElementsByClassName('texto-inserido');
-    var elementosUnidades = document.getElementsByClassName('unidades');
     
+
     for (var i = 0; i < elementosTextoInserido.length; i++) {
         elementosTextoInserido[i].addEventListener('click', function() {
             event.stopPropagation();
@@ -201,7 +201,7 @@ function inserir() {
             // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
             var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
             var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
-            var valorItem = linhaClicada.querySelector('.valor_item').textContent.trim();
+            var valorItem = linhaClicada.querySelector('.valor_item').value;
 
             // Exiba a div de edição
             document.getElementById("corpo_alterar").style.display = "block";
@@ -256,7 +256,7 @@ function inserir() {
             var checkbox = document.createElement("input");
             var unidades = document.createElement("span");
             var valor_item = document.createElement("input");
-    
+            
             valor_item.type = "text";
             valor_item.value = texto4;
             valor_item.placeholder = "R$";
