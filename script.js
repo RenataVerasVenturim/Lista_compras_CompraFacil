@@ -201,15 +201,18 @@ function inserir() {
             // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
             var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
             var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
-    
+            var valorItem = linhaClicada.querySelector('.valor_item').textContent.trim();
+
             // Exiba a div de edição
             document.getElementById("corpo_alterar").style.display = "block";
     
-            // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
+            // Atualize os campos "item_usuario4", "item_usuario5" e "item_usuario6" com os valores obtidos
             document.getElementById("item_usuario4").value =
                 valorUnidades;
             document.getElementById("item_usuario5").value =
                 valorTextoInserido;
+            document.getElementById("item_usuario6").value =
+                valorItem;
     
             linhaClicada.remove();
             AtribuirFunctionsApósAlterarItem()
@@ -243,6 +246,7 @@ function inserir() {
         // Move a definição das variáveis para dentro do evento de clique do botão
         var texto1 = document.getElementById("item_usuario4").value;
         var texto3 = document.getElementById("item_usuario5").value;
+        var texto4 = document.getElementById("item_usuario6").value;
         
         if (texto3 !== "" && texto1 !== "") {
             botao_inserir.style.background = "lightgray";
@@ -254,7 +258,7 @@ function inserir() {
             var valor_item = document.createElement("input");
     
             valor_item.type = "text";
-            valor_item.setAttribute("value", "");
+            valor_item.value = texto4;
             valor_item.placeholder = "R$";
             valor_item.className = "valor_item";
     
@@ -307,6 +311,7 @@ function inserir() {
         
         document.getElementById("item_usuario4").value = "";
         document.getElementById("item_usuario5").value = "";
+        document.getElementById("item_usuario6").value = "";
         
         document.getElementById("corpo_alterar").style.display="none";
         
@@ -349,8 +354,7 @@ function inserir() {
 
         
     var elementosTextoInserido = document.getElementsByClassName('texto-inserido');
-    var elementosUnidades = document.getElementsByClassName('unidades');
-    
+       
     for (var i = 0; i < elementosTextoInserido.length; i++) {
         elementosTextoInserido[i].addEventListener('click', function() {
             event.stopPropagation();
@@ -358,9 +362,9 @@ function inserir() {
             var linhaClicada = this.closest('.item');
     
             // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
-            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
             var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
-    
+            var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
+            var valorItem = linhaClicada.querySelector('.valor_item').value;
             // Exiba a div de edição
             document.getElementById("corpo_alterar").style.display = "block";
     
@@ -369,31 +373,34 @@ function inserir() {
                 valorUnidades;
             document.getElementById("item_usuario5").value =
                 valorTextoInserido;
+            document.getElementById("item_usuario6").value = valorItem;
     
             linhaClicada.remove();
         });
     }
-    
+    /*
     for (var i = 0; i < elementosUnidades.length; i++) {
         elementosUnidades[i].addEventListener('click', function() {
             event.stopPropagation();
     
-            // Localize o elemento pai (linha com classe "item")
-            var linhaClicada = this.closest('.item');
-    
             // Obtenha os valores de "texto-inserido" e "unidades" da linha clicada
             var valorTextoInserido = linhaClicada.querySelector('.texto-inserido').textContent.trim();
             var valorUnidades = linhaClicada.querySelector('.unidades').textContent.trim();
+            var valorItem = linhaClicada.querySelector('.valor_item').textContent.trim();
             // Exiba a div de edição
             document.getElementById("corpo_alterar").style.display = "block";
+    
             // Atualize os campos "item_usuario4" e "item_usuario5" com os valores obtidos
-    
-            document.getElementById("item_usuario4").value = valorUnidades;
-            document.getElementById("item_usuario5").value = valorTextoInserido;
-    
+            document.getElementById("item_usuario4").value =
+                valorUnidades;
+            document.getElementById("item_usuario5").value =
+                valorTextoInserido;
+            document.getElementById("item_usuario6").value =
+                valorTextoInserido;
+        
             linhaClicada.remove();
         });
-    }
+    }*/
 
     });
 
