@@ -5,9 +5,9 @@
   "display": "standalone",
   "name": "CompraFácil",
   "orientation": "any",
-  "scope": "/app1/",
+  "scope": "/",
   "short_name": "CompraFácil",
-  "start_url": "/app1/Lista_compras_CompraFacil/",
+  "start_url": "/Lista_compras_CompraFacil/",
   "theme_color": "#89badc",
   "categories": [
     "finance",
