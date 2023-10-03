@@ -7,7 +7,7 @@
   "orientation": "any",
   "scope": "/app1/",
   "short_name": "CompraFácil",
-  "start_url": "/Lista_compras_CompraFacil/",
+  "start_url": "/app1/Lista_compras_CompraFacil/",
   "theme_color": "#89badc",
   "categories": [
     "finance",
